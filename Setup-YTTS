@@ -1,6 +1,7 @@
 #!/bin/bash
-
-echo -e "\e[1;33m Example lower case! mycompany on git hub .\e[0m"
+ACCT=$(whoami)
+DPBX=Dropbox
+echo -e "\e[1;33m Example lower case! my-trucking-company no spaces on git hub .\e[0m"
 printf '\e[38;2;255;0;0m  \n'
 read -p 'the name of your git must match company name type it here lower case: ' repcomin
 echo -e "\e[1;33m Example https://github.com/Drakeo/Youhas-trucking-test-scripts.git .\e[0m"
@@ -19,3 +20,21 @@ sed -i 's|githubaddres|$gitname|g' YTTS-rsync
 EOF
 sh sett
 rm sett
+echo -e "\e[1;33m Example lower case! my-trucking-company no spaces on git hub .\e[0m"
+read -p 'wee need to setup your dropbox Ready? : ' decide
+if [ "$decides" = "n" ]; then
+   echo good day $ACCT
+   exit
+fi 
+  
+if [ "$decides" = "N" ]; then
+   echo good day $ACCT
+   exit
+fi
+
+read -p 'Name of your company ? : ' company
+mkdir -p $HOME/$DPBX/$company
+cd $HOME/$DPBX/$company
+mkdir Customers  Deactivated  Drivers  Monthly  Saftey  Trailers  Trucks  Weekly  Yearly
+
+

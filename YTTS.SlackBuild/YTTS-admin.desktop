@@ -1,0 +1,14 @@
+[Desktop Entry]
+Comment=Admin for YTT soulutions
+Exec=YTTS-admin
+GenericName=YTTS-admin
+Icon=accessories-calculator
+Name=YTTS-admin
+NoDisplay=false
+Path[$e]=
+StartupNotify=true
+Terminal=1
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

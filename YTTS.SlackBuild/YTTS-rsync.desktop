@@ -1,0 +1,14 @@
+[Desktop Entry]
+Comment=YTTS-rsync
+Exec=YTTS-rsync
+GenericName=YTTS-rsync
+Icon=accessories-dictionary
+Name=YTTS-rsync
+NoDisplay=false
+Path[$e]=
+StartupNotify=true
+Terminal=1
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

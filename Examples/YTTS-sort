@@ -1,0 +1,216 @@
+#!/bin/bash
+ACCT=$(whoami)
+DATE=$(date +'%-1m-%d-%y')
+WDATE=$(date +"%A")
+DRECPT="DRV-receipts-$DATE"
+DRVBOL="DRV-bol-$DATE"
+MDATE=$(date +'%-1m-%Y')
+YDATE=$(date +'%Y')
+MDRECPT="DRV-receipts-$MDATE"
+MDRVBOL="DRV-bol-$MDATE"
+YDRECPT="DRV-receipts-$YDATE"
+YDRVBOL="DRV-bol-$YDATE"
+CUSTR1="Hyster"
+CUSTR2="McClain"
+CUSTR3="Sygma"
+# your company name
+CPYNAME="comin"
+DPBX=Dropbox
+#begin YTTS-sort script
+
+	echo -e "\e[1;33m Welcome to Your Trucking Trans Solutions.\e[0m"
+	echo -e "\e[1;33m One quick question \e[0m"
+	echo -e "\e[1;33m whom am I loging in to.\e[0m"
+	echo -e "\e[1;33m YTTS-sort ?.\e[0m"
+	read varname
+    echo -e "\e[1;36m $varname how are you on this $WDATE\e[0m"
+
+if [ "$varname" = "$ACCT" ]; then
+    echo -e "\e[1;36m Doing well I hope $ACCT  \e[0m"
+    echo -e "\e[1;36m going to need your YTTS-sort login and password\e[0m"
+else 
+	echo -e "\e[1;31m Sorry your name does not match the\e[0m"
+	echo -e "\e[1;31m computer account login\e[0m"
+	echo -e "\e[1;31m you will need to login \e[0m"
+	echo -e "\e[1;31myour account try again.\e[0m"
+	exit
+fi
+
+if su -c true "$USER"; then
+  echo -e "\e[1;31m Correct password\e[0m"
+else
+    echo -e "\e[1;31m sorry User Name or Password does not match\e[0m"
+    echo -e "\e[1;31m check your spelling caps on ?\e[0m"
+    sleep 5
+    exit
+fi
+
+
+read -p ' YTTS-sort should be done any time to pull bills from drivers account for billing ? Y/N : ' decides
+
+if [ "$decides" = "n" ]; then
+   echo good day $ACCT
+   exit
+fi 
+  
+if [ "$decides" = "N" ]; then
+   echo good day $ACCT
+   exit
+fi
+
+cd $HOME/$DPBX/$CPYNAME/Drivers
+if [ -d $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT ]; then
+cp */Receipts/*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT
+cp */Receipts/*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT
+cp */Receipts/*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT
+cp */Receipts/*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT
+else
+mkdir -p $HOME/$DPBX/$CPYNAME/Drivers/$DRECPT
+cp */Receipts/*.jpg $DRECPT
+cp */Receipts/*.jpeg $DRECPT
+cp */Receipts/*.png $DRECPT
+cp */Receipts/*.pdf $DRECPT
+mv $HOME/$DPBX/$CPYNAME/Drivers/$DRECPT $HOME/$DPBX/$CPYNAME/Weekly/
+fi
+
+if [ -d $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL ]; then
+cp *YTD-*/*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *YTD-*/*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *YTD-*/*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *YTD-*/*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+else
+mkdir -p $DRVBOL
+cp *YTD-*/*.jpg $DRVBOL
+cp *YTD-*/*.jpeg $DRVBOL
+cp *YTD-*/*.png $DRVBOL
+cp *YTD-*/*.pdf $DRVBOL 
+mv $HOME/$DPBX/$CPYNAME/Drivers/$DRVBOL  $HOME/$DPBX/$CPYNAME/Weekly/
+fi
+#start monthly
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+
+if [ -d $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT ]; then
+cp DRV-receipts-*/*.jpg $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT
+cp DRV-receipts-*/*.jpeg $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT
+cp DRV-receipts-*/*.png $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT
+cp DRV-receipts-*/*.pdf $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT
+else
+mkdir -p $MDRECPT
+cp DRV-receipts-*/*.jpg $MDRECPT
+cp DRV-receipts-*/*.jpeg $MDRECPT
+cp DRV-receipts-*/*.png $MDRECPT
+cp DRV-receipts-*/*.pdf $MDRECPT
+mv $HOME/$DPBX/$CPYNAME/Weekly/$MDRECPT $HOME/$DPBX/$CPYNAME/Monthly/
+fi
+
+if [ -d $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL ]; then
+cp DRV-bol-*/*.jpg $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL
+cp DRV-bol-*/*.jpeg $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL
+cp DRV-bol-*/*.png $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL
+cp DRV-bol-*/*.pdf $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL
+else
+mkdir -p $MDRVBOL
+cp DRV-bol-*/*.jpg $MDRVBOL
+cp DRV-bol-*/*.jpeg $MDRVBOL
+cp DRV-bol-*/*.png $MDRVBOL
+cp DRV-bol-*/*.pdf $MDRVBOL
+mv $HOME/$DPBX/$CPYNAME/Weekly/$MDRVBOL $HOME/$DPBX/$CPYNAME/Monthly/
+fi
+#anual
+cd $HOME/$DPBX/$CPYNAME/Monthly/
+
+if [ -d $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT ]; then
+cp DRV-receipts-*/*.jpg $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT
+cp DRV-receipts-*/*.jpeg $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT
+cp DRV-receipts-*/*.png $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT
+cp DRV-receipts-*/*.pdf $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT
+else
+mkdir -p $YDRECPT
+cp DRV-receipts-*/*.jpg $YDRECPT
+cp DRV-receipts-*/*.jpeg $YDRECPT
+cp DRV-receipts-*/*.png $YDRECPT
+cp DRV-receipts-*/*.pdf $YDRECPT
+mv $HOME/$DPBX/$CPYNAME/Monthly/$YDRECPT $HOME/$DPBX/$CPYNAME/Yearly/
+fi
+# anual 
+if [ -d $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL ]; then
+cp DRV-bol-*/*.jpg $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL
+cp DRV-bol-*/*.jpeg $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL
+cp DRV-bol-*/*.png $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL
+cp DRV-bol-*/*.pdf $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL
+else
+mkdir -p $YDRVBOL
+cp DRV-bol-*/*.jpg $YDRVBOL
+cp DRV-bol-*/*.jpeg $YDRVBOL
+cp DRV-bol-*/*.png $YDRVBOL
+cp DRV-bol-*/*.pdf $YDRVBOL
+mv $HOME/$DPBX/$CPYNAME/Monthly/$YDRVBOL $HOME/$DPBX/$CPYNAME/Yearly/
+fi
+echo daily weekly monthly have been created
+echo pause 3 seconds to read this
+sleep 3
+echo ok going to comit changes
+
+read -p ' YTTS-sort Ready to sort all our customers bills ? Y/N : ' chose
+
+if [ "$chose" = "n" ]; then
+   echo good day $ACCT
+   YTTS-rsync
+   exit
+elif [ "$chose" = "N" ]; then
+	   echo good day $ACCT
+   exit
+elif [ "$chose" = "N" ]; then
+   echo good day $ACCT
+   YTTS-rsync
+   exit
+else
+
+if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR1/$CUSTR1$DATE ]; then
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR1
+cp DRV-bol-*/hy-*.jpg ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/hy-*.jpeg ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/hy-*.png ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/hy-*.pdf ../Customers/$CUSTR1/$CUSTR1$DATE
+else
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/hy-*.jpg ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/hy-*.jpeg ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/hy-*.png ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/hy-*.pdf ../Customers/$CUSTR1/$CUSTR1$DATE
+fi
+#Customer2
+if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR2/$CUSTR2$DATE ]; then
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/mc-*.jpg ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/mc-*.jpeg ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/mc-*.png ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/mc-*.pdf ../Customers/$CUSTR2/$CUSTR2$DATE
+else
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/mc-*.jpg ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/mc-*.jpeg ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/mc-*.png ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/mc-*.pdf ../Customers/$CUSTR2/$CUSTR2$DATE
+fi
+#Customer3
+if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR3/$CUSTR3$DATE ]; then
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+cp DRV-bol-*/sy*.jpg ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/sy*.jpeg ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/sy*.png ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/sy*.pdf ../Customers/$CUSTR3/$CUSTR3$DATE
+else
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/sy*.jpg ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/sy*.jpeg ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/sy*.png ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/sy*.pdf ../Customers/$CUSTR3/$CUSTR3$DATE
+fi
+YTTS-rsync
+fi
