@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#Github name = company name
+CPYNAME="comin"
+if [ -d $HOME/$CPYNAME ]; then
+cd $HOME/$CPYNAME 
+  git checkout master 
+  git pull
+cd $HOME
+else
+cd $HOME
+  git clone githubaddres
+fi
+echo make backup of dropbox
+sleep 3
+rsync -r -a -v  --progress --stats --exclude .git $HOME/Dropbox/ Dropbox-bkp/
+rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
+  --exclude YTTS-admin  --exclude  YTTS-rsync  --exclude  YTTS-sort --exclude YTTS-payroll \
+ $HOME/Dropbox/  $HOME/Youhas-trucking-test-scripts/
+
+echo ok going to comit changes
+
+cat > gitadd <<EOF
+cd $HOME/comin
+git add -A
+git commit -a -m 'upload`date +%s`'
+git push
+EOF
+sh gitadd
+rm gitadd
+echo check your githubaddres
+echo  all updated
+sleep 5

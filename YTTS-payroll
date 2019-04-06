@@ -1,0 +1,88 @@
+#!/bin/bash
+ACCT=$(whoami)
+DATE=$(date +'%-1m-%d-%y')
+WDATE=$(date +"%A")
+DRECPT="DRV-receipts-$DATE"
+DRVBOL="DRV-bol-$DATE"
+MDATE=$(date +'%-1m-%Y')
+MDRECPT="DRV-receipts-$MDATE"
+MDRVBOL="DRV-bol-$MDATE"
+# your company name
+CPYNAME="comin"
+DPBX=Dropbox
+
+#begin YTTS-payroll script
+
+	echo -e "\e[1;33m Welcome to Your Trucking Trans Solutions.\e[0m"
+	echo -e "\e[1;33m One quick question \e[0m"
+	echo -e "\e[1;33m whom am I loging in to.\e[0m"
+	echo -e "\e[1;33m YTTS-payroll ?.\e[0m"
+	read varname
+    echo -e "\e[1;36m $varname how are you on this $WDATE\e[0m"
+
+if [ "$varname" = "$ACCT" ]; then
+    echo -e "\e[1;36m Doing well I hope $ACCT  \e[0m"
+    echo -e "\e[1;36m going to need your YTTS-payroll login and password\e[0m"
+else 
+	echo -e "\e[1;31m Sorry your name does not match the\e[0m"
+	echo -e "\e[1;31m computer account login\e[0m"
+	echo -e "\e[1;31m you will need to login \e[0m"
+	echo -e "\e[1;31myour account try again.\e[0m"
+	exit
+fi
+
+if su -c true "$USER"; then
+  echo -e "\e[1;31m Correct password\e[0m"
+else
+    echo -e "\e[1;31m sorry User Name or Password does not match\e[0m"
+    echo -e "\e[1;31m check your spelling caps on ?\e[0m"
+    sleep 5
+    exit
+fi
+
+read -p ' YTTS-payroll should be done on scheduled days so to get all the drivers bols do payroll? Y/N : ' decides
+read -p ' no going back all the drivers bols wiil be  packed and dated in there folders Y/N : ' chose
+read -p ' Sanity check lets get our people paid Y/N : ' sanity
+
+
+if [ "$decides" = "n" ]; then
+   echo good day $ACCT
+   exit
+fi 
+  
+if [ "$decides" = "N" ]; then
+   echo good day $ACCT
+   exit
+fi
+
+YTTS-sort
+
+boxB="$HOME/$DPBX/$CPYNAME/Drivers/*"
+    for dir in $boxB ; do
+      ( cd $dir ;  mkdir $DRVBOL ; mv *.jpg *.jpeg *.png *.pdf $DRVBOL  )
+    done
+ 
+boxR="$HOME/$DPBX/$CPYNAME/Drivers/*/Receipts"
+    for dir in $boxR ; do
+      ( cd $dir ;  mkdir ../$DRECPT ; mv *.jpg *.jpeg *.png *.pdf ../$DRECPT )
+    done 
+
+printf '\e[38;2;255;0;0m  \n'
+read -p 'You want to open a browser to the Drivers Folders ? Y/N : ' openbrs
+
+if [ "$openbrs" = "n" ]; then
+   YTTS-rsync
+   exit
+elif [ "$openbrs" = "N" ]; then
+  YTTS-rsync
+   exit
+else
+echo -e "\e[1;36m rsyncing.\e[0m"
+sleep 3
+ YTTS-rsync
+echo -e "\e[1;33m open firefox.\e[0m"
+sleep 3
+fi
+firefox $HOME/$DPBX/$CPYNAME/Drivers & exit
+
+echo good day $ACCT

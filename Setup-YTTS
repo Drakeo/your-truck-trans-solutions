@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo -e "\e[1;33m Example lower case! mycompany on git hub .\e[0m"
+printf '\e[38;2;255;0;0m  \n'
+read -p 'the name of your git must match company name type it here lower case: ' repcomin
+echo -e "\e[1;33m Example https://github.com/Drakeo/Youhas-trucking-test-scripts.git .\e[0m"
+read -p 'the name of your git click clone and copy past it here : ' gitname
+echo -e "\e[1;33m Upercase caps Best Trucking Company type BTC .\e[0m"
+read -p 'company abriviations all caps sorts drivers Eample  Young Truckers Inc type in YTI  : ' coabriv
+
+
+cat > sett <<EOF
+sed -i 's/comin/$repcomin/g' YTTS-admin
+sed -i 's/comin/$repcomin/g' YTTS-payroll
+sed -i 's/comin/$repcomin/g' YTTS-rsync
+sed -i 's/comin/$repcomin/g' YTTS-sort
+sed -i 's/yourabrv/$coabriv/g' YTTS-admin
+sed -i 's|githubaddres|$gitname|g' YTTS-rsync
+EOF
+sh sett
+rm sett
