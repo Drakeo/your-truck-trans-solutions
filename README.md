@@ -17,6 +17,6 @@ powerful rsync tool  10 dollars a month
 # QR scans free
 # my favorite smartphone scanner is FastScan
 # QR scanners on google play most suck do to to many pop ups to test
-my vaforite QR Scanner
+my favorite QR Scanner
 # git hub the finest file updater in the world 10 dollars
 ~~~
