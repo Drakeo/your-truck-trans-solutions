@@ -58,16 +58,16 @@ fi
 
 cd $HOME/$DPBX/$CPYNAME/Drivers
 if [ -d $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL ]; then
-cp *$EMPLY-*/splits-*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *$EMPLY-*/splits-*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *$EMPLY-*/splits-*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *$EMPLY-*/splits-*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/splits-*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/splits-*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/splits-*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/splits-*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
 else
 mkdir -p $DRVBOL
-cp *$EMPLY-*/splits-*.jpg $DRVBOL
-cp *$EMPLY-*/splits-*.jpeg $DRVBOL
-cp *$EMPLY-*/splits-*.png $DRVBOL
-cp *$EMPLY-*/splits-*.pdf $DRVBOL 
+cp *$EMPLY*/splits-*.jpg $DRVBOL
+cp *$EMPLY*/splits-*.jpeg $DRVBOL
+cp *$EMPLY*/splits-*.png $DRVBOL
+cp *$EMPLY*/splits-*.pdf $DRVBOL 
 mv $HOME/$DPBX/$CPYNAME/Drivers/$DRVBOL  $HOME/$DPBX/$CPYNAME/Splits/
 fi
 
