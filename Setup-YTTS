@@ -36,5 +36,4 @@ read -p 'Name of your company ? : ' company
 mkdir -p $HOME/$DPBX/$company
 cd $HOME/$DPBX/$company
 mkdir Customers  Deactivated  Drivers  Monthly  Saftey  Trailers  Trucks  Weekly  Yearly
-
-
+#
