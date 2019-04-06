@@ -54,6 +54,7 @@ sed -i 's/comin/$repcomin/g' YTTS-rsync
 sed -i 's/comin/$repcomin/g' YTTS-sort
 sed -i 's/yourabrv/$coabriv/g' YTTS-admin
 sed -i 's/yourabrv/$coabriv/g' YTTS-sort
+sed -i 's/comin/$repcomin/g' YTTS-split
 sed -i 's/yourabrv/$coabriv/g' YTTS-split
 sed -i 's|githubaddres|$gitname|g' YTTS-rsync
 EOF
