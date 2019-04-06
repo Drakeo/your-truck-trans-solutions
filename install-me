@@ -1,0 +1,64 @@
+~~~
+ Why run in VirtualBox because you can copy the whole system click of a mouse
+ This is not that hard. for you mac or windows users.
+ 
+ Just install virtualbox 5.26 is good 6.04 as of right now not bad.
+ https://www.virtualbox.org/
+ how to set up install  with Virtualbox
+ https://docs.oracle.com/cd/E26217_01/E26796/html/qs-create-vm.html
+ Grab slackware64 14.2 iso. 
+http://slackware.cs.utah.edu/pub/slackware/slackware-iso/slackware64-14.2-iso/slackware64-14.2-install-dvd.iso
+or get current my favorite
+http://bear.alienbase.nl/mirrors/slackware/slackware64-current-iso/slackware64-current-install-dvd.iso
+
+great article on installing slackware.
+https://www.unixmen.com/install-slackware-14-1-step-step/
+
+but they forgot one step.
+you need to  create the partitions.
+after you boot and keep pressing enter till just a prompt
+type cfdisk
+how to use cfdisk
+https://wiki.manjaro.org/index.php/Cfdisk_Basic_Partitioning_Scenarios
+use DOS not GPT 
+the I use 50 gig hard drive.
+48 gigs linux make bootable
+2 gigs linux swap
+
+you can use any linux operating system i just use the best
+Slackware.
+get it install and updated
+ then install
+ 
+dropbox
+qrencode-4.0.2
+
+your slacking now open a terminal my favorite is konsole
+
+type these commands
+firefox https://sbopkg.org/
+download sbopkg
+now go to Downloads
+open a terminal type 
+installpkg sbopkg
+hit tab it will finish for you then hit enter
+
+now type sbopkg
+yes to create. 
+then select sync
+
+then search for 
+Dropbox
+then select and install it.
+
+then search for
+qrencode
+install it
+now your ready.
+
+~~~
+
+
+
+
+ 
