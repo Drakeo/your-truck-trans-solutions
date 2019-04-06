@@ -1,5 +1,6 @@
 # your-truck-trans-solutions
 What is your Truck Trans Soultions YTTS.
+~~~
 #Keep it simple
 #Scan equipment see hisotry and permits at your fingers
 #Let my shippers scan trailers send papers ready to roll.
@@ -15,3 +16,4 @@ powerful rsync tool  10 dollars a month
 #my favorite smartphone scanner is FastScan
 #QR scanners on google play most suck do to to many pop ups to test
 my vaforite QR Scanner
+~~~
