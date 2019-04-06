@@ -60,7 +60,7 @@ EOF
 sh sett
 rm sett
 echo -e "\e[1;33m Example lower case! my-trucking-company no spaces on git hub .\e[0m"
-read -p 'wee need to setup your dropbox Ready? : ' decide
+read -p 'wee need to setup your dropbox Ready? : ' decides
 if [ "$decides" = "n" ]; then
    echo good day $ACCT
    exit
