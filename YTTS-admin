@@ -56,7 +56,8 @@ fi
 while true; do
 set e
 	echo -e "\e[1;33m $ACCT Here are your options.\e[0m"
-	echo -e "\e[1;36m Add An employee .\e[0m"
+	echo -e "\e[1;36m Add An employee first letter of first name then first letter
+	 of last name example the month and year born JDoe0216.\e[0m"
 	echo -e "\e[1;31m Remove An employee .\e[0m"
 	echo -e "\e[1;36m Add a truck or trailer .\e[0m"
 	echo -e "\e[1;31m Remove a truck or trailer .\e[0m"
