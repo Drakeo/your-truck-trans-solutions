@@ -16,12 +16,12 @@ sleep 3
 rsync -r -a -v  --progress --stats --exclude .git $HOME/Dropbox/ Dropbox-bkp/
 rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
   --exclude YTTS-admin  --exclude  YTTS-rsync  --exclude  YTTS-sort --exclude YTTS-payroll \
- $HOME/Dropbox/  $HOME/Youhas-trucking-test-scripts/
+ $HOME/Dropbox/  $HOME/$CPYNAME/
 
 echo ok going to comit changes
 
 cat > gitadd <<EOF
-cd $HOME/comin
+cd $HOME/$CPYNAME
 git add -A
 git commit -a -m 'upload`date +%s`'
 git push
