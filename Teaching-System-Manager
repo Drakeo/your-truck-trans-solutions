@@ -1,0 +1,111 @@
+system is up and running ?
+no
+email me at flats_fixed@flatsfixedbicycles.com
+your Dropbox up and running?
+email me.
+OK your smart enough to grab these scripts off my git-hub
+and your smart enough to get Virtualbox to run if your not using Linux
+
+see email above.
+        Setup-YTTS
+use the Setup-YTTS to edit you other files.things to know your git-hub
+address mine is this https://github.com/Drakeo/your-truck-trans-solutions.git
+My demo hub I use to trouble shoot https://github.com/Drakeo/Youhas-trucking-test-scripts.git
+
+your company name
+
+Then we use abbreviations  I drive for Youhas trucking 
+YTD driver  
+when we creat a 
+Driver the folder will look like this YTD-FFixed1220
+you can use any employ code you want. make it simple 
+month and year
+   YTTS-sort
+   
+lok on demo https://github.com/Drakeo/Youhas-trucking-test-scripts/tree/master/youhas-trucking
+sort is the BEAST of the system. 
+It lets you grab BOL'S Bill of Ladings or recipts and anytime
+it puts them in weekly monthly yearly
+if you do billing once a week. set it to run by it's self once a week
+it also seperate your customers BOL's, Weekly Monthly Yearly
+
+    YTTS-split
+    
+ look on demo https://github.com/Drakeo/Youhas-trucking-test-scripts/tree/master/youhas-trucking/Splits
+This is a powerfull tool and still in development as i write this
+driver drops trailer scans BOL's names them split-company code-bol numbers-driver acount-date
+codes hy-Hyster mc-MC Mlaine sy-Sygma fa-Fapco wlm-WalMart etc etc
+notice all lower case
+  split-wlm-ffixed1220-4-06-19  
+easier on a smartphone. this system will be able to mesh with  windows and mac
+both of them have issues with caps letter have the time do not reconize them
+
+       YTTS-payroll
+       
+!!!!!! use only when all sorting is done from drivers BOL's !!!!!!!!!!!
+why because it grabs all the drivers BOL's and puts them in there driver boil folder.
+So they can see all bills and date.
+And you are enable to sort anything till new BOL's come in.
+yes you can fix that but hey copy paste to death
+look on demo https://github.com/Drakeo/Youhas-trucking-test-scripts/tree/master/youhas-trucking/Drivers/YTD-Brent1220 
+
+Or we use git-hub as a back up and can go to any moment at anytime
+we do this by tags or revision 
+ enter your git hub on you computer and git checkout.
+ when you run any program  YTTS-? it calls YTTS-rsync  makes a copy of your dropbox then 
+ commits all the changes to git and sends them to your online github.
+ commits will be named uploads_plus the seconds of the year. yes how many seconds in a day
+look at demo here https://github.com/Drakeo/Youhas-trucking-test-scripts/commits/master you will see bunch of these
+
+upload1554565572
+@Drakeo
+Drakeo committed an hour ago
+
+upload1554565423
+@Drakeo
+Drakeo committed an hour ago
+
+upload1554562625
+@Drakeo
+Drakeo committed 2 hours ago
+
+upload1554561422
+@Drakeo
+Drakeo committed 2 hours ago
+
+so yes we can go back in time 
+
+      YTTS-admin 
+      
+ Back  bone of human resource
+ Back Bone of Maintenance 
+ I wrote it to walk you through it is simple
+ if you mess up it will let you know.
+ 
+ What it does read the script.
+ 
+  Here are your options.
+ Add An employee first letter of first name then first letter
+         of last name example the month and year born JDoe0216.
+ Remove An employee .
+ Add a truck or trailer .
+ Remove a truck or trailer .
+ Remove an Employee truck or trailer 
+        Places it in the Deactivated folder .
+ Reminder spelling , add-truck , add-trailer , add-employee .
+ Reminder spelling , rm-truck , rm-trailer , rm-employee .
+                                
+    Copy paste right from here may help Ok  what do you want to do. .
+
+    after add-ing truck or a trailer it creates a qr scan and 
+    opens firfox to your dropbox and ask you to create a link
+    so all the drivers and shippers can use it.
+    demo from my git https://github.com/Drakeo/Youhas-trucking-test-scripts/tree/master/youhas-trucking/Trailers/TRL-37411
+    yes it is sync with my Dropbox. 
+    removed employees , trucks , trailers  go into a deactivated folder
+    demo https://github.com/Drakeo/Youhas-trucking-test-scripts/tree/master/youhas-trucking/Deactivated
+    
+we keep that stuff for records. 
+this is placed in his box https://github.com/Drakeo/Youhas-trucking-test-scripts/blob/master/youhas-trucking/Deactivated/Deactivated-Drivers/deactivate-YTD-JSmith0414/Employee.txt.
+add-? you get an activation date rm-? you get a deactivated date.
+
