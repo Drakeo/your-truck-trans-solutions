@@ -1,4 +1,9 @@
 #!/bin/bash
+ME=$(id -u)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
 ACCT=$(whoami)
 DATE=$(date +'%-1m-%d-%y')
 WDATE=$(date +"%A")

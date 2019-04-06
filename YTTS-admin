@@ -1,4 +1,10 @@
 #!/bin/bash
+ME=$(id -u)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+
 ACCT=$(whoami)
 #location of drop box set to default
 DPBX=Dropbox

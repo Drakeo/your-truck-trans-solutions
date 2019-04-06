@@ -11,8 +11,11 @@ MDRVBOL="DRV-bol-$MDATE"
 YDRECPT="DRV-receipts-$YDATE"
 YDRVBOL="DRV-bol-$YDATE"
 CUSTR1="Hyster"
+CODE1="hy"
 CUSTR2="McClain"
+CODE2="mc"
 CUSTR3="Sygma"
+CODE3="sy"
 # your company name
 CPYNAME="comin"
 DPBX=Dropbox
@@ -169,48 +172,48 @@ else
 if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR1/$CUSTR1$DATE ]; then
 cd $HOME/$DPBX/$CPYNAME/Weekly/
 mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR1
-cp DRV-bol-*/hy-*.jpg ../Customers/$CUSTR1/$CUSTR1$DATE
-cp DRV-bol-*/hy-*.jpeg ../Customers/$CUSTR1/$CUSTR1$DATE
-cp DRV-bol-*/hy-*.png ../Customers/$CUSTR1/$CUSTR1$DATE
-cp DRV-bol-*/hy-*.pdf ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/$CODE1-*.jpg ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/$CODE1-*.jpeg ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/$CODE1-*.png ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/$CODE1-*.pdf ../Customers/$CUSTR1/$CUSTR1$DATE
 else
 cd $HOME/$DPBX/$CPYNAME/Weekly/
 mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR1/$CUSTR1$DATE
-cp DRV-bol-*/hy-*.jpg ../Customers/$CUSTR1/$CUSTR1$DATE
-cp DRV-bol-*/hy-*.jpeg ../Customers/$CUSTR1/$CUSTR1$DATE
-cp DRV-bol-*/hy-*.png ../Customers/$CUSTR1/$CUSTR1$DATE
-cp DRV-bol-*/hy-*.pdf ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/$CODE1-*.jpg ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/$CODE1-*.jpeg ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/$CODE1-*.png ../Customers/$CUSTR1/$CUSTR1$DATE
+cp DRV-bol-*/$CODE1-*.pdf ../Customers/$CUSTR1/$CUSTR1$DATE
 fi
 #Customer2
 if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR2/$CUSTR2$DATE ]; then
 cd $HOME/$DPBX/$CPYNAME/Weekly/
 mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR2/$CUSTR2$DATE
-cp DRV-bol-*/mc-*.jpg ../Customers/$CUSTR2/$CUSTR2$DATE
-cp DRV-bol-*/mc-*.jpeg ../Customers/$CUSTR2/$CUSTR2$DATE
-cp DRV-bol-*/mc-*.png ../Customers/$CUSTR2/$CUSTR2$DATE
-cp DRV-bol-*/mc-*.pdf ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/$CODE2-*.jpg ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/$CODE2-*.jpeg ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/$CODE2-*.png ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/$CODE2-*.pdf ../Customers/$CUSTR2/$CUSTR2$DATE
 else
 cd $HOME/$DPBX/$CPYNAME/Weekly/
 mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR2/$CUSTR2$DATE
-cp DRV-bol-*/mc-*.jpg ../Customers/$CUSTR2/$CUSTR2$DATE
-cp DRV-bol-*/mc-*.jpeg ../Customers/$CUSTR2/$CUSTR2$DATE
-cp DRV-bol-*/mc-*.png ../Customers/$CUSTR2/$CUSTR2$DATE
-cp DRV-bol-*/mc-*.pdf ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/$CODE2-*.jpg ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/$CODE2-*.jpeg ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/$CODE2-*.png ../Customers/$CUSTR2/$CUSTR2$DATE
+cp DRV-bol-*/$CODE2-*.pdf ../Customers/$CUSTR2/$CUSTR2$DATE
 fi
 #Customer3
 if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR3/$CUSTR3$DATE ]; then
 cd $HOME/$DPBX/$CPYNAME/Weekly/
-cp DRV-bol-*/sy*.jpg ../Customers/$CUSTR3/$CUSTR3$DATE
-cp DRV-bol-*/sy*.jpeg ../Customers/$CUSTR3/$CUSTR3$DATE
-cp DRV-bol-*/sy*.png ../Customers/$CUSTR3/$CUSTR3$DATE
-cp DRV-bol-*/sy*.pdf ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/$CODE3*.jpg ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/$CODE3*.jpeg ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/$CODE3*.png ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/$CODE3*.pdf ../Customers/$CUSTR3/$CUSTR3$DATE
 else
 cd $HOME/$DPBX/$CPYNAME/Weekly/
 mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR3/$CUSTR3$DATE
-cp DRV-bol-*/sy*.jpg ../Customers/$CUSTR3/$CUSTR3$DATE
-cp DRV-bol-*/sy*.jpeg ../Customers/$CUSTR3/$CUSTR3$DATE
-cp DRV-bol-*/sy*.png ../Customers/$CUSTR3/$CUSTR3$DATE
-cp DRV-bol-*/sy*.pdf ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/$CODE3*.jpg ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/$CODE3*.jpeg ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/$CODE3*.png ../Customers/$CUSTR3/$CUSTR3$DATE
+cp DRV-bol-*/$CODE3*.pdf ../Customers/$CUSTR3/$CUSTR3$DATE
 fi
 YTTS-rsync
 fi
