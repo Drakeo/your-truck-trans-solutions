@@ -19,4 +19,6 @@ powerful rsync tool  10 dollars a month
 # QR scanners on google play most suck do to to many pop ups to test
 my favorite QR Scanner
 # git hub the finest file updater in the world 10 dollars
+# Can be run with out GitHub but you lose the ability to
+  to see what person does what and have the ability to rest everything from anyday.
 ~~~
