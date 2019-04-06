@@ -25,6 +25,7 @@ YDRVBOL="DRV-bol-$YDATE"
 # your company name
 CPYNAME="comin"
 DPBX=Dropbox
+EMPLY="yourabrv-"
 #begin YTTS-sort script
 
 	echo -e "\e[1;33m Welcome to Your Trucking Trans Solutions.\e[0m"
@@ -83,16 +84,16 @@ mv $HOME/$DPBX/$CPYNAME/Drivers/$DRECPT $HOME/$DPBX/$CPYNAME/Weekly/
 fi
 
 if [ -d $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL ]; then
-cp *YTD-*/*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *YTD-*/*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *YTD-*/*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *YTD-*/*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
 else
 mkdir -p $DRVBOL
-cp *YTD-*/*.jpg $DRVBOL
-cp *YTD-*/*.jpeg $DRVBOL
-cp *YTD-*/*.png $DRVBOL
-cp *YTD-*/*.pdf $DRVBOL 
+cp *$EMPLY*/*.jpg $DRVBOL
+cp *$EMPLY*/*.jpeg $DRVBOL
+cp *$EMPLY*/*.png $DRVBOL
+cp *$EMPLY*/*.pdf $DRVBOL 
 mv $HOME/$DPBX/$CPYNAME/Drivers/$DRVBOL  $HOME/$DPBX/$CPYNAME/Weekly/
 fi
 #start monthly

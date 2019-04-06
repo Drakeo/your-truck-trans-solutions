@@ -53,6 +53,8 @@ sed -i 's/comin/$repcomin/g' YTTS-payroll
 sed -i 's/comin/$repcomin/g' YTTS-rsync
 sed -i 's/comin/$repcomin/g' YTTS-sort
 sed -i 's/yourabrv/$coabriv/g' YTTS-admin
+sed -i 's/yourabrv/$coabriv/g' YTTS-sort
+sed -i 's/yourabrv/$coabriv/g' YTTS-split
 sed -i 's|githubaddres|$gitname|g' YTTS-rsync
 EOF
 sh sett
@@ -72,5 +74,5 @@ fi
 read -p 'Name of your company ? : ' company
 mkdir -p $HOME/$DPBX/$company
 cd $HOME/$DPBX/$company
-mkdir Customers  Deactivated  Drivers  Monthly  Saftey  Trailers  Trucks  Weekly  Yearly
+mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
 #
