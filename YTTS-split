@@ -57,17 +57,17 @@ if [ "$decides" = "N" ]; then
 fi
 
 cd $HOME/$DPBX/$CPYNAME/Drivers
-if [ -d $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL ]; then
-cp *$EMPLY*/split-*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *$EMPLY*/split-*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *$EMPLY*/split-*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
-cp *$EMPLY*/split-*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+if [ -d $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL ]; then
+cp *$EMPLY*/split-*.jpg $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL 
+cp *$EMPLY*/split-*.jpeg $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL 
+cp *$EMPLY*/split-*.png $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL 
+cp *$EMPLY*/split-*.pdf $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL 
 else
-mkdir -p $DRVBOL
-cp *$EMPLY*/split-*.jpg $DRVBOL
-cp *$EMPLY*/split-*.jpeg $DRVBOL
-cp *$EMPLY*/split-*.png $DRVBOL
-cp *$EMPLY*/split-*.pdf $DRVBOL 
-mv $HOME/$DPBX/$CPYNAME/Drivers/$DRVBOL  $HOME/$DPBX/$CPYNAME/Splits/
+mkdir -p $SDRVBOL
+cp *$EMPLY*/split-*.jpg $SDRVBOL
+cp *$EMPLY*/split-*.jpeg $SDRVBOL
+cp *$EMPLY*/split-*.png $SDRVBOL
+cp *$EMPLY*/split-*.pdf $SDRVBOL 
+mv $HOME/$DPBX/$CPYNAME/Drivers/$SDRVBOL  $HOME/$DPBX/$CPYNAME/Splits/
 fi
 
