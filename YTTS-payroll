@@ -76,18 +76,18 @@ printf '\e[38;2;255;0;0m  \n'
 read -p 'You want to open a browser to the Drivers Folders ? Y/N : ' openbrs
 
 if [ "$openbrs" = "n" ]; then
-   YTTS-rsync
+   $HOME/.local/share/YTTS/bin/YTTS-rsync
    exit
 elif [ "$openbrs" = "N" ]; then
-  YTTS-rsync
+  $HOME/.local/share/YTTS/bin/YTTS-rsync
    exit
 else
 echo -e "\e[1;36m rsyncing.\e[0m"
 sleep 3
- YTTS-rsync
+$HOME/.local/share/YTTS/bin/YTTS-rsync
 echo -e "\e[1;33m open firefox.\e[0m"
 sleep 3
 fi
-firefox $HOME/$DPBX/$CPYNAME/Drivers & exit
+firefox $HOME/$DPBX/$CPYNAME/Drivers
 
 echo good day $ACCT

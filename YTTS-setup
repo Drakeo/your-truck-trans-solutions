@@ -55,6 +55,7 @@ read -p 'company phone number   : ' phone
 
 cat > sett <<EOF
 sed -i 's/comin/$repcomin/g' YTTS-admin
+sed -i 's/comin/$repcomin/g' YTTS-customer-sort
 sed -i 's/comin/$repcomin/g' YTTS-payroll
 sed -i 's/comin/$repcomin/g' YTTS-rsync
 sed -i 's/comin/$repcomin/g' YTTS-sort

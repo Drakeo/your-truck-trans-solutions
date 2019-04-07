@@ -56,6 +56,7 @@ cp -rf YTTS-* $HOME/.local/share/YTTS/bin/
 mkdir -p $HOME/.local/share/applications
 cp -rf desktop/YTTS-* $HOME/.local/share/applications
 cp -rf icons  $HOME/.local/share/YTTS/
+cp -rf customers $HOME/.local/share/YTTS/
 cd  $HOME/.local/share/YTTS/bin/
 sh YTTS-setup
 else
@@ -65,6 +66,7 @@ cp -rf YTTS-* $HOME/.local/share/YTTS/bin/
 mkdir -p $HOME/.local/share/applications
 cp -rf desktop/YTTS-* $HOME/.local/share/applications
 cp -rf icons  $HOME/.local/share/YTTS/
+cp -rf customers $HOME/.local/share/YTTS/
 cd  $HOME/.local/share/YTTS/bin/
 sh YTTS-setup
 fi
