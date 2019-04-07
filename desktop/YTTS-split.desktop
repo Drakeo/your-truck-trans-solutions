@@ -1,9 +1,9 @@
 [Desktop Entry]
-Comment=YTTS-sort
-Exec=YTTS-sort
-GenericName=YTTS-sort
-Icon=hexchat
-Name=YTTS-sort
+Comment=YTTS-split
+Exec=/YTTS-split
+GenericName=YTTS-split
+Icon=/YTTS-split.png
+Name=YTTS-split
 NoDisplay=false
 Path[$e]=
 StartupNotify=true

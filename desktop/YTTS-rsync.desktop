@@ -1,8 +1,8 @@
 [Desktop Entry]
 Comment=YTTS-rsync
-Exec=YTTS-rsync
+Exec=/YTTS-rsync
 GenericName=YTTS-rsync
-Icon=accessories-dictionary
+Icon=/YTTS-rsync.png
 Name=YTTS-rsync
 NoDisplay=false
 Path[$e]=

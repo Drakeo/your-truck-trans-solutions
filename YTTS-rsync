@@ -19,13 +19,12 @@ echo make backup of dropbox
 sleep 3
 rsync -r -a -v  --progress --stats --exclude .git $HOME/Dropbox/ Dropbox-bkp/
 rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
-  --exclude YTTS-admin  --exclude  YTTS-rsync  --exclude  YTTS-sort --exclude YTTS-payroll \
- $HOME/Dropbox/  $HOME/$CPYNAME/
+ $HOME/Dropbox/comin  $HOME/gitshort/
 
 echo ok going to comit changes
 
 cat > gitadd <<EOF
-cd $HOME/$CPYNAME
+cd $HOME/comin
 git add -A
 git commit -a -m 'upload`date +%s`'
 git push

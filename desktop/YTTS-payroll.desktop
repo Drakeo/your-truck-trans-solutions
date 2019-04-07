@@ -1,9 +1,9 @@
 [Desktop Entry]
-Comment=Admin for YTT soulutions
-Exec=YTTS-admin
-GenericName=YTTS-admin
-Icon=accessories-calculator
-Name=YTTS-admin
+Comment=YTTS-payroll
+Exec=/YTTS-payroll
+GenericName=YTTS-payroll
+Icon=/YTTS-payroll.png
+Name=YTTS-payroll
 NoDisplay=false
 Path[$e]=
 StartupNotify=true

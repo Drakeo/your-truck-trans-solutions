@@ -1,9 +1,9 @@
 [Desktop Entry]
-Comment=YTTS-payroll
-Exec=YTTS-payroll
-GenericName=YTTS-payroll
-Icon=akregator
-Name=YTTS-payroll
+Comment=YTTS-admin
+Exec=/YTTS-admin
+GenericName=YTTS-admin
+Icon=/YTTS-admin.png
+Name=YTTS-admin
 NoDisplay=false
 Path[$e]=
 StartupNotify=true

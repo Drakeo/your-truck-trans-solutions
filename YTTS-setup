@@ -9,11 +9,13 @@ fi
 ACCT=$(whoami)
 
 DPBX=Dropbox
+DESK="$HOME/.local/share/YTTS/bin"
+ICON="$HOME/.local/share/YTTS/icons"
 
 	echo -e "\e[1;33m Welcome to Your Trucking Trans Solutions.\e[0m"
 	echo -e "\e[1;33m One quick question \e[0m"
 	echo -e "\e[1;33m whom am I loging in to.\e[0m"
-	echo -e "\e[1;33mYTTS-admin ?.\e[0m"
+	echo -e "\e[1;33mYTTS-setup ?.\e[0m"
 	read varname
     echo -e "\e[1;36m $varname how are you on this $WDATE\e[0m"
 
@@ -37,14 +39,18 @@ else
     exit
 fi
 
-echo -e "\e[1;33m your Dropbox is setup and running your github is setup and running? .\e[0m"
-echo -e "\e[1;33m Example lower case! my-trucking-company no spaces on git hub .\e[0m"
+
 printf '\e[38;2;255;0;0m  \n'
-read -p 'the name of your git must match company name type it here lower case: ' repcomin
-echo -e "\e[1;33m Example https://github.com/Drakeo/Youhas-trucking-test-scripts.git .\e[0m"
-read -p 'the name of your git click clone and copy past it here : ' gitname
+read -p 'the name of your company: ' repcomin
+echo -e "\e[1;33m Example https://github.com/Drakeo/demo-trucking-company.git .\e[0m"
+read -p 'the name of your git-hub click clone and copy past it here : ' gitname
+echo -e "\e[1;33m the actual name of the github  example demo-trucking-company .\e[0m"
+read -p 'the actual name of the github  : ' gitlittle
 echo -e "\e[1;33m Upercase caps Best Trucking Company type BTC .\e[0m"
-read -p 'company abriviations all caps sorts drivers Eample  Young Truckers Inc type in YTI  : ' coabriv
+read -p 'company abriviations all caps sorts drivers Eample  Young Truckers Inc type in DTC  : ' coabriv
+read -p 'company address   : ' address
+read -p 'company phone number   : ' phone
+
 
 
 cat > sett <<EOF
@@ -57,9 +63,28 @@ sed -i 's/yourabrv/$coabriv/g' YTTS-sort
 sed -i 's/comin/$repcomin/g' YTTS-split
 sed -i 's/yourabrv/$coabriv/g' YTTS-split
 sed -i 's|githubaddres|$gitname|g' YTTS-rsync
+sed -i 's/ADDME/$address/g' YTTS-admin
+sed -i 's/PHONME/$phone/g' YTTS-admin
+sed -i 's|gitshort|$gitlittle|g' YTTS-rsync
 EOF
 sh sett
 rm sett
+cd $HOME/.local/share/applications
+cat > dsett <<EOF
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-admin.desktop 
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-payroll.desktop 
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-rsync.desktop 
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-sort.desktop 
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-split.desktop 
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-admin.desktop 
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-payroll.desktop 
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-rsync.desktop 
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-sort.desktop 
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-split.desktop 
+EOF
+sh dsett
+rm dsett
+
 echo -e "\e[1;33m Example lower case! my-trucking-company no spaces on git hub .\e[0m"
 read -p 'wee need to setup your dropbox Ready Y/N : ' decides
 if [ "$decides" = "n" ]; then
@@ -72,8 +97,8 @@ if [ "$decides" = "N" ]; then
    exit
 fi
 
-read -p 'Name of your company ? : ' company
-mkdir -p $HOME/$DPBX/$company
-cd $HOME/$DPBX/$company
+
+mkdir -p $HOME/$DPBX/$repcomin
+cd $HOME/$DPBX/$repcomin
 mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
 #
