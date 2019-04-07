@@ -76,12 +76,14 @@ sed -i 's|Exec=|Exec=$DESK|g' YTTS-admin.desktop
 sed -i 's|Exec=|Exec=$DESK|g' YTTS-payroll.desktop 
 sed -i 's|Exec=|Exec=$DESK|g' YTTS-rsync.desktop 
 sed -i 's|Exec=|Exec=$DESK|g' YTTS-sort.desktop 
-sed -i 's|Exec=|Exec=$DESK|g' YTTS-split.desktop 
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-split.desktop
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-customer-sort.desktop  
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-admin.desktop 
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-payroll.desktop 
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-rsync.desktop 
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-sort.desktop 
-sed -i 's|Icon=|Icon=$ICON|g' YTTS-split.desktop 
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-split.desktop
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-customer-sort.desktop  
 EOF
 sh dsett
 rm dsett

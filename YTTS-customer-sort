@@ -15,7 +15,6 @@ MDRECPT="DRV-receipts-$MDATE"
 MDRVBOL="DRV-bol-$MDATE"
 YDRECPT="DRV-receipts-$YDATE"
 YDRVBOL="DRV-bol-$YDATE"
-#add more customers edit the script
 
 CPYNAME="comin"
 DPBX=Dropbox
@@ -47,6 +46,17 @@ else
     sleep 5
     exit
 fi
+
+read -p ' like to run YTTS-admin again with another option task ? Y/N : ' askedit
+if [ "$askedit" = "n" ]; then
+echo on to sorting
+elif [ "$askedit" = "N" ]; then
+echo onto sorting 
+else
+kwrite $HOME/.local/share/YTTS/customers
+echo onto sorting
+fi
+
 
 while true; do
 
