@@ -15,14 +15,6 @@ MDRECPT="DRV-receipts-$MDATE"
 MDRVBOL="DRV-bol-$MDATE"
 YDRECPT="DRV-receipts-$YDATE"
 YDRVBOL="DRV-bol-$YDATE"
-#add more customers edit the script
-#CUSTR1="" #Example uncomment and edit letters am =amazon  CUSTR1="Amazon
-#CODE1="    Example uncomment CODE1="am"
-#CUSTR2="" 
-#CODE2=""
-#CUSTR3=""
-#CODE3=""
-# your company name
 CPYNAME="comin"
 DPBX=Dropbox
 EMPLY="yourabrv-"
@@ -156,24 +148,10 @@ cp DRV-bol-*/*.png $YDRVBOL
 cp DRV-bol-*/*.pdf $YDRVBOL
 mv $HOME/$DPBX/$CPYNAME/Monthly/$YDRVBOL $HOME/$DPBX/$CPYNAME/Yearly/
 fi
-echo daily weekly monthly have been created
-echo pause 3 seconds to read this
+echo -e "\e[1;33m daily weekly monthly have been created\e[0m"
+echo -e "\e[1;33m ok going to comit changes.\e[0m"
+echo -e "\e[1;32m pause 3 seconds to read this\e[0m"
 sleep 3
-echo ok going to comit changes
-
-read -p ' YTTS-sort Ready to sort all our customers bills ? Y/N : ' chose
-
-if [ "$chose" = "n" ]; then
-   echo good day $ACCT
-   $HOME/.local/share/YTTS/bin/YTTS-rsync
-   exit
-elif [ "$chose" = "N" ]; then
-	   echo good day $ACCT
-   exit
-elif [ "$chose" = "N" ]; then
-   echo good day $ACCT
-   $HOME/.local/share/YTTS/bin/YTTS-rsync
-   exit
-else
 $HOME/.local/share/YTTS/bin/YTTS-rsync
-fi
+
+

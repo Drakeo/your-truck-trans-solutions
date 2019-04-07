@@ -104,4 +104,6 @@ fi
 mkdir -p $HOME/$DPBX/$repcomin
 cd $HOME/$DPBX/$repcomin
 mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
+cd Deactivated 
+mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
 #

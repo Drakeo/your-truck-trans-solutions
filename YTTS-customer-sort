@@ -47,7 +47,7 @@ else
     exit
 fi
 
-read -p ' like to run YTTS-admin again with another option task ? Y/N : ' askedit
+read -p ' like to add a customer to the list first ? Y/N : ' askedit
 if [ "$askedit" = "n" ]; then
 echo on to sorting
 elif [ "$askedit" = "N" ]; then
