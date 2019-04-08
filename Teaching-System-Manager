@@ -57,7 +57,7 @@ why because it grabs all the drivers BOL's and puts them in there driver boil fo
 So they can see all bills and date.
 And you are unable to sort anything till new BOL's come in.
 yes you can fix that but hey copy paste to death
-look on demo https://github.com/Drakeo/Youhas-trucking-test-scripts/tree/master/youhas-trucking/Drivers/YTD-Brent1220 
+look on demo https://github.com/Drakeo/demo-trucking-company/tree/master/demo-trucking-company/Drivers/DTC-JD0215
 
 Or we use git-hub as a back up and can go to any moment at anytime
 we do this by tags or revision 
@@ -65,7 +65,7 @@ we do this by tags or revision
  when you run any program  YTTS-? it calls YTTS-rsync  makes a copy of your dropbox then 
  commits all the changes to git and sends them to your online github.
  commits will be named uploads_plus the seconds of the year. yes how many seconds in a day
-look at demo here https://github.com/Drakeo/Youhas-trucking-test-scripts/commits/master you will see bunch of these
+look at demo here https://github.com/Drakeo/demo-trucking-company/commits/master you will see bunch of these
 
 
 upload1554683649
