@@ -153,11 +153,11 @@ if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
 else
 	mkdir -p $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Maintenance
 	mkdir -p $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits
-	echo Shippers or drivers droping or hooking place bol info here .jpg .pdf TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
-	echo please use your company code hy-Hyster mc-MC Mlaine sy-Sygma fa-Fapco TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
-	echo $CPADRS $CAPHONE TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
 	echo activate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
-	echo place maintenace records here .jpg .pdf preferred  TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Maintenance/Maintenance.txt
+	echo Shippers or drivers droping or hooking place bol info here .jpg .pdf  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo please use your company code hy-Hyster mc-MC Mlaine sy-Sygma fa-Fapco  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo $CPADRS $CAPHONE TRL-$trlname  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo place maintenace records here .jpg .pdf preferred  TRL-$trlname  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Maintenance/Maintenance.txt
 	echo activate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits/Permits.txt
 	qrencode -o $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/qrcode-TRL-$trlname.png  https://www.dropbox.com/home/$CPYNAME/Trailers/TRL-$trlname
     read -p 'push enter create Trailers link for drivers close it when done: ' hope
