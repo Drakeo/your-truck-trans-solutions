@@ -12,7 +12,7 @@ DPBX=Dropbox
 DESK="$HOME/Documents/YTTS/bin"
 
 
-Welcome $ACCT
+echo Welcome $ACCT
 
 read -p 'the name of your company: ' repcomin
 echo Example https://github.com/Drakeo/demo-trucking-company.git 
