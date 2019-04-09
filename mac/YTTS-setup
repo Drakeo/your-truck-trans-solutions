@@ -45,7 +45,6 @@ chmod a+x sett
 sh sett
 rm sett
 
-echo Example lower case! my-trucking-company no spaces on git hub 
 read -p 'wee need to setup your dropbox Ready Y/N : ' decides
 if [ "$decides" = "n" ]; then
    echo good day $ACCT

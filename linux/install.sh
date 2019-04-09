@@ -1,5 +1,5 @@
 #!/bin/bash
-
+CWD=$(pwd)
 ME=$(id -u)
 if [ "$ME" = "0" ]; then
 echo do not run this as root 
@@ -70,14 +70,3 @@ cp -rf customers $HOME/.local/share/YTTS/
 cd  $HOME/.local/share/YTTS/bin/
 sh YTTS-setup
 fi
-
-
-
-
-
-
-
-
-
-
-

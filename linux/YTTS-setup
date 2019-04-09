@@ -88,8 +88,8 @@ EOF
 sh dsett
 rm dsett
 
-echo -e "\e[1;33m Example lower case! my-trucking-company no spaces on git hub .\e[0m"
-read -p 'wee need to setup your dropbox Ready Y/N : ' decides
+
+read -p 'Do you need to setup your dropbox Ready Y/N : ' decides
 if [ "$decides" = "n" ]; then
    echo good day $ACCT
    exit
@@ -107,3 +107,5 @@ mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  
 cd Deactivated 
 mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
 #
+
+ 
