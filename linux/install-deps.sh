@@ -53,8 +53,8 @@ if [ "$ostype" = "slackpkg" ]; then
    slackpkg=slackware$SYARCH-$SLKUSYS
    mkdir $CWD/$slackpkg
    cd $slackpkg
-   wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware$SYARCH-$SLKUSYS/dropbox-66.4.84-x86_64-1_SBo.tgz
-   wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware$SYARCH-$SLKUSYS/qrencode-4.0.2-x86_64-1_SBo.tgz
+   wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware$SYARCH-$SLKUSYS/dropbox-66.4.84-$ARCH-1_SBo.tgz
+   wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware$SYARCH-$SLKUSYS/qrencode-4.0.2-$ARCH-1_SBo.tgz
 if [ "$ME" = "0" ]; then
 	upgradepkg --reinstall --install-new *.t?z
 else
