@@ -1,5 +1,6 @@
 #!/bin/bash
-cd  $CWD
+CWD=$(pwd)
+ME=$(id -u)
 read -p 'Do you want to install dropbox and qrencode Y/N : ' drop
 
 if [ "$drop" = "n" ]; then
@@ -50,15 +51,20 @@ fi
 read -p 'type lower cas kubuntu ubuntu  slackpkg : ' ostype
 if [ "$ostype" = "slackpkg" ]; then
    slackpkg=slackware$SYARCH-$SLKUSYS
-   mkdir $slackpkg
+   mkdir $CWD/$slackpkg
    cd $slackpkg
-   wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware64-current/dropbox-66.4.84-x86_64-1_SBo.tgz
-   wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware64-current/qrencode-4.0.2-x86_64-1_SBo.tgz
-   su  -c  "upgradepkg --reinstall --install-new *.t?Z"
+   wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware$SYARCH-$SLKUSYS/dropbox-66.4.84-x86_64-1_SBo.tgz
+   wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware$SYARCH-$SLKUSYS/qrencode-4.0.2-x86_64-1_SBo.tgz
+if [ "$ME" = "0" ]; then
+	upgradepkg --reinstall --install-new *.t?z
+else
+   su  -c  "upgradepkg --reinstall --install-new *.t?z"	
+fi
+
 elif  [ "$ostype" = "kubuntu" ]; then
     sudo apt-get update
     sudo apt install qrencode
-    mkdir $ostype-$arch
+    mkdir $CWD/ $ostype-$arch
     cd $ostype-$arch
     wget -O - "https://www.dropbox.com/download?plat=lnx.$XARCH" | tar xzf -
     .dropbox-dist/dropboxd
