@@ -1,0 +1,174 @@
+#!/bin/bash
+ME=$(id -u)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+
+ACCT=$(whoami)
+#location of drop box set to default
+DPBX=Dropbox
+# your company name
+CPYNAME="comin"
+#edit company address
+CPADRS="$CPYNAME ADDME"
+# Edit company phone number here
+CAPHONE="PHONME"
+# this shows day of the week
+WDATE=$(date +"%A")
+# this shows the todays date
+DATE=$(date +'%-1m-%d-%y')
+#your company intials
+EMPLY="yourabrv-"
+
+#begin YTTS-admin script
+
+while true; do
+set e
+	echo  $ACCT Here are your options.
+	echo  Add An employee first letter of first name then first letter
+	 of last name example the month and year born JDoe0216.
+	echo  Remove An employee .
+	echo  Add a truck or trailer .
+	echo  Remove a truck or trailer .
+	echo  Remove an Employee truck or trailer 
+	Places it in the Deactivated folder .
+	echo  Reminder spelling , add-truck , add-trailer , add-employee .
+	echo  Reminder spelling , rm-truck , rm-trailer , rm-employee .
+	echo                                 
+    Copy paste right from here may help Ok  what do you want to do. .
+    
+# create Variable optiontsk option-task associate it with function 
+
+printf '\e[38;2;255;0;0m  \n'
+read -p 'Option?: ' optiontsk
+# add-employee = optiontsk
+if [ "$optiontsk" = "add-employee" ]; then
+	echo  first letter of employee name then last name employee ID .
+	echo  example JSmith0414.
+	read -p 'employee name?: ' empname
+# check if employee exist if so ask what are you doing
+if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
+	echo   this matches another employee name .
+	echo   are you trying to rm-employee instead .
+else
+	mkdir -p $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Receipts
+	mkdir -p $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Notices
+	echo $empname please use your company code hy-Hyster mc-MC Mlaine sy-Sygma fa-Fapco >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Employee-Help.txt
+	echo $CPADRS $CAPHONE  >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Employee-Help.txt
+	echo activate employee $empname $DATE >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Employee-Help.txt
+	echo activate employee $empname $DATE >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Receipts/Receipts.txt
+	echo activate employee $empname $DATE >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Notices/Notices.txt
+fi
+# rm-employee = optiontsk
+elif [ "$optiontsk" = "rm-employee" ]; then
+  echo  first letter of employee name then last name employee ID .
+  echo  example JSmith0414.
+read -p 'employee name?: ' empname
+# check if employee exist if so ask for correct spelling open a browser to searh for them
+if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
+	echo deactivate employee $empname $DATE >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Employee-Help.txt
+	mv $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Drivers/deactivate-$EMPLY$empname-$DATE
+	rm -rf $HOME/$DPBX/$CPYNAME/Drivers/deactivate-$EMPLY$empname 
+else
+	echo  unable to find employee check spelling cap on?.
+	echo   are you trying to add-employee instead .
+	echo   opening a browser to search for it close it when done.
+	sleep 3
+    open -a safari $HOME/$DPBX/$CPYNAME/Drivers
+fi
+# add-truck = optiontsk
+elif [ "$optiontsk" = "add-truck" ]; then
+	echo  Type in truck number example 307.
+	read -p 'truck number?: ' trkname
+# check if truck exist if so ask what are you doing
+if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname ]; then
+	echo   this matches another TRK-$trkname .
+	echo   are you trying to rm-truck instead .
+else
+	mkdir -p $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Maintenance
+	mkdir -p $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Permits
+	echo activate TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Truck-Help.txt
+	echo $CPADRS $CAPHONE TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Truck-Help.txt
+	echo place maintenace records here .jpg .pdf preferred TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Maintenance/Maintenance.txt
+	echo place permits here TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Permits/Permits.txt
+    qrencode -o $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/qrcode-TRK-$trkname.png  https://www.dropbox.com/home/$CPYNAME/Trucks/TRK-$trkname
+    read -p 'push enter create truck link for drivers close it when done: ' hope
+    open -a safari https://www.dropbox.com/home/$CPYNAME/Trucks
+fi
+# rm-truck = optiontsk    
+elif [ "$optiontsk" = "rm-truck" ]; then
+	echo  Type in truck number example 307.
+	read -p 'truck number?: ' trkname
+# check if truck exist if so ask for correct spelling open a browser to searh for them
+if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname  ]; then
+	echo deactivate TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Truck-Help.txt
+	mv  $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Trucks/deactivate-TRK-$trkname-$DATE
+	rm -rf $HOME/$DPBX/$CPYNAME/Trucks/deactivate-TRK-$trkname
+else
+	echo  unable to find truck check spelling cap on?.
+	echo   are you trying to add-truck instead .
+	echo   opening a browser to search for it close it when done.
+	sleep 3
+    open -a safari $HOME/$DPBX/$CPYNAME/Trucks
+fi
+# add-trailer = optiontsk
+elif [ "$optiontsk" = "add-trailer" ]; then
+	echo  Type in trailer number example 37411.
+	read -p 'trailer number?: ' trlname
+# check if trailer exist if so ask what are you doing
+if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
+	echo   this matches another TRL-$trlname  .
+	echo   are you trying to rm-trailer instead .
+else
+	mkdir -p $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Maintenance
+	mkdir -p $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits
+	echo activate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo Shippers or drivers droping or hooking place bol info here .jpg .pdf  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo please use your company code hy-Hyster mc-MC Mlaine sy-Sygma fa-Fapco  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo $CPADRS $CAPHONE TRL-$trlname  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo place maintenace records here .jpg .pdf preferred  TRL-$trlname  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Maintenance/Maintenance.txt
+	echo activate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits/Permits.txt
+	qrencode -o $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/qrcode-TRL-$trlname.png  https://www.dropbox.com/home/$CPYNAME/Trailers/TRL-$trlname
+    read -p 'push enter create Trailers link for drivers close it when done: ' hope
+    open -a safari https://www.dropbox.com/home/$CPYNAME/Trailers
+fi
+# rm-trailer = optiontsk
+elif [ "$optiontsk" = "rm-trailer" ]; then
+	echo  Type in trailer number example 37411.
+	read -p 'trailer number?: ' trlname
+# check if trailer exist if so ask what are you doing
+if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
+	echo deactivate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	mv  $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname  $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Trailers/deactivate-TRL-$trlname-$DATE
+	rm -rf $HOME/$DPBX/$CPYNAME/Trailers/deactivate-TRL-$trlname
+else
+	echo  unable to find trailer check spelling cap on?.
+	echo   are you trying to add-trailer instead .
+	echo   opening a browser to search for it close it when done.
+	sleep 3
+    open -a safari $HOME/$DPBX/$CPYNAME/Trailers
+fi
+else
+  echo check spelling
+fi
+printf '\e[38;2;255;0;0m  \n'
+read -p ' like to run YTTS-admin again with another option task ? Y/N : ' decides
+
+if [ "$decides" = "n" ]; then
+sh $HOME/Documents/YTTS/bin/YTTS-rsync
+   exit
+elif [ "$decides" = "N" ]; then
+sh $HOME/Documents/YTTS/bin/YTTS-rsync
+   exit
+else
+echo  More work $ACCT.
+sleep 2
+fi
+   
+
+    for i in {Type in add-truck  add-trailer  add-employee or rm-truck  rm-trailer  rm-employee }; do
+        echo        $i
+        sleep 1
+    done
+done 	

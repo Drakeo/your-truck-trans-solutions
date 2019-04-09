@@ -1,0 +1,106 @@
+#!/bin/bash
+ME=$(id -u)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+ACCT=$(whoami)
+DATE=$(date +'%-1m-%d-%y')
+WDATE=$(date +"%A")
+DRECPT="DRV-receipts-$DATE"
+DRVBOL="DRV-bol-$DATE"
+MDATE=$(date +'%-1m-%Y')
+YDATE=$(date +'%Y')
+MDRECPT="DRV-receipts-$MDATE"
+MDRVBOL="DRV-bol-$MDATE"
+YDRECPT="DRV-receipts-$YDATE"
+YDRVBOL="DRV-bol-$YDATE"
+
+CPYNAME="comin"
+DPBX=Dropbox
+#begin YTTS-sort script
+echo Welcome $ACCT
+
+read -p ' like to add a customer to the list first ? Y/N : ' askedit
+if [ "$askedit" = "n" ]; then
+echo on to sorting
+elif [ "$askedit" = "N" ]; then
+echo onto sorting 
+else
+open -a TextEdit $HOME/Documents/YTTS/customers
+echo onto sorting
+fi
+
+
+while true; do
+
+cat $HOME/Documents/YTTS/customers
+
+read -p ' Customer name look above  : ' CUSTR
+read -p ' Customer code look above  : ' CODE
+
+
+
+if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$DATE ]; then
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR
+cp DRV-bol-*/$CODE-*.jpg ../Customers/$CUSTR/$CUSTR-$DATE
+cp DRV-bol-*/$CODE-*.jpeg ../Customers/$CUSTR/$CUSTR-$DATE
+cp DRV-bol-*/$CODE-*.png ../Customers/$CUSTR/$CUSTR-$DATE
+cp DRV-bol-*/$CODE-*.pdf ../Customers/$CUSTR/$CUSTR-$DATE
+else
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR/$CUSTR-$DATE
+cp DRV-bol-*/$CODE-*.jpg ../Customers/$CUSTR/$CUSTR-$DATE
+cp DRV-bol-*/$CODE-*.jpeg ../Customers/$CUSTR/$CUSTR-$DATE
+cp DRV-bol-*/$CODE-*.png ../Customers/$CUSTR/$CUSTR-$DATE
+cp DRV-bol-*/$CODE-*.pdf ../Customers/$CUSTR/$CUSTR-$DATE
+fi
+
+if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE ]; then
+cd $HOME/$DPBX/$CPYNAME/Monthly/
+cp DRV-bol-*/$CODE-*.jpg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
+cp DRV-bol-*/$CODE-*.jpeg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
+cp DRV-bol-*/$CODE-*.png $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
+cp DRV-bol-*/$CODE-*.pdf $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
+else
+cd $HOME/$DPBX/$CPYNAME/Monthly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE
+cp DRV-bol-*/$CODE-*.jpg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
+cp DRV-bol-*/$CODE-*.jpeg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
+cp DRV-bol-*/$CODE-*.png $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
+cp DRV-bol-*/$CODE-*.pdf $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
+fi 
+if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE ]; then
+cd $HOME/$DPBX/$CPYNAME/Yearly/
+cp DRV-bol-*/$CODE-*.jpg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
+cp DRV-bol-*/$CODE-*.jpeg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
+cp DRV-bol-*/$CODE-*.png $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
+cp DRV-bol-*/$CODE-*.pdf $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
+else
+cd $HOME/$DPBX/$CPYNAME/Yearly/
+mkdir -p $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE
+cp DRV-bol-*/$CODE-*.jpg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
+cp DRV-bol-*/$CODE-*.jpeg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
+cp DRV-bol-*/$CODE-*.png $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
+cp DRV-bol-*/$CODE-*.pdf $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
+fi 
+
+read -p ' like to run YTTS-admin again with another option task ? Y/N : ' decides
+
+if [ "$decides" = "n" ]; then
+sh $HOME/Documents/YTTS/bin/YTTS-rsync
+   exit
+elif [ "$decides" = "N" ]; then
+sh $HOME/Documents/YTTS/bin/YTTS-rsync
+   exit
+else
+echo More Customers $ACCT.
+sleep 2
+fi
+
+    for i in {Type customer name and code }; do
+        echo -e       $i
+        sleep 1
+    done
+done 	

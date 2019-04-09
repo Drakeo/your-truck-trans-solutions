@@ -1,0 +1,66 @@
+#!/bin/bash
+
+ME=$(id -u)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+
+ACCT=$(whoami)
+
+DPBX=Dropbox
+DESK="$HOME/Documents/YTTS/bin"
+
+
+Welcome $ACCT
+
+read -p 'the name of your company: ' repcomin
+echo Example https://github.com/Drakeo/demo-trucking-company.git 
+read -p 'the name of your git-hub click clone and copy past it here : ' gitname
+echo the actual name of the github  example demo-trucking-company 
+read -p 'the actual name of the github  : ' gitlittle
+echo Upercase caps Best Trucking Company type BTC 
+read -p 'company abriviations all caps sorts drivers Eample  Young Truckers Inc type in DTC  : ' coabriv
+read -p 'company address   : ' address
+read -p 'company phone number   : ' phone
+
+
+
+cat > sett <<EOF
+sed -i 's/comin/$repcomin/g' YTTS-admin
+sed -i 's/comin/$repcomin/g' YTTS-customer-sort
+sed -i 's/comin/$repcomin/g' YTTS-payroll
+sed -i 's/comin/$repcomin/g' YTTS-rsync
+sed -i 's/comin/$repcomin/g' YTTS-sort
+sed -i 's/yourabrv/$coabriv/g' YTTS-admin
+sed -i 's/yourabrv/$coabriv/g' YTTS-sort
+sed -i 's/comin/$repcomin/g' YTTS-split
+sed -i 's/yourabrv/$coabriv/g' YTTS-split
+sed -i 's|githubaddres|$gitname|g' YTTS-rsync
+sed -i 's/ADDME/$address/g' YTTS-admin
+sed -i 's/PHONME/$phone/g' YTTS-admin
+sed -i 's|gitshort|$gitlittle|g' YTTS-rsync
+EOF
+chmod a+x sett
+sh sett
+rm sett
+
+echo Example lower case! my-trucking-company no spaces on git hub 
+read -p 'wee need to setup your dropbox Ready Y/N : ' decides
+if [ "$decides" = "n" ]; then
+   echo good day $ACCT
+   exit
+fi 
+  
+if [ "$decides" = "N" ]; then
+   echo good day $ACCT
+   exit
+fi
+
+
+mkdir -p $HOME/$DPBX/$repcomin
+cd $HOME/$DPBX/$repcomin
+mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
+cd Deactivated 
+mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
+#
