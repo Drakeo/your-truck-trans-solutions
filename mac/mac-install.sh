@@ -25,15 +25,15 @@ if [ "$decides" = "N" ]; then
 fi
 rm -rf $HOME/Documents/YTTS
 mkdir -p $HOME/Documents/YTTS/bin
-cp -rf YTTS-* $HOME/Documents/YTTS/bin/
+cp  YTTS-admin  YTTS-customer-sort  YTTS-payroll  YTTS-rsync  YTTS-setup  YTTS-sort  YTTS-split  $HOME/Documents/YTTS/bin/
 cp -rf customers $HOME/Documents/YTTS/
 cd  $HOME/Documents/YTTS/bin/
 sh YTTS-setup
 else
 read -p ' This will overwrite your old installation Y/N : ' install
 mkdir -p $HOME/Documents/YTTS/bin
-cp -rf YTTS-* $HOME/Documents/YTTS/bin/
-cp -rf customers $HOME/Documents/YTTS/
+cp  YTTS-admin  YTTS-customer-sort  YTTS-payroll  YTTS-rsync  YTTS-setup  YTTS-sort  YTTS-split   $HOME/Documents/YTTS/bin/
+cp  customers $HOME/Documents/YTTS/
 cd  $HOME/Documents/YTTS/bin/
 sh YTTS-setup
 fi
