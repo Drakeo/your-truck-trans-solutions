@@ -48,10 +48,8 @@ elif [ "$SLKGCC" = "gcc (GCC) 5.5.0" ]; then
 else
   SLKUSYS="current"
 fi
-read -p 'type lower cas kubuntu ubuntu  slackpkg : ' ostype
-if [ "$ostype" = "slackpkg" ]; then
-   slackpkg=slackware$SYARCH-$SLKUSYS
-   mkdir $CWD/$slackpkg
+read -p 'type lower case kubuntu ubuntu slackpkg android ' ostype
+if [ "$ostype" = "slackpkg" ]; then   slackpkg=slackware$SYARCH-$SLKUSYS   mkdir $CWD/$slackpkg
    cd $slackpkg
    wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware$SYARCH-$SLKUSYS/dropbox-66.4.84-$ARCH-1_SBo.tgz
    wget -c http://flatsfixedbicycles.com/YTTS/deps/slackware$SYARCH-$SLKUSYS/qrencode-4.0.2-$ARCH-1_SBo.tgz
@@ -72,7 +70,7 @@ elif  [ "$ostype" = "ubuntu" ]; then
     sudo apt-get update
     sudo apt install qrencode 
     sudo apt-get install nautilus-dropbox
-elif[ "$ostype" = "android" ]; then
+elif [ "$ostype" = "android" ]; then
     apt-get update
     apt-get install libqrencode
     apt-get install git
