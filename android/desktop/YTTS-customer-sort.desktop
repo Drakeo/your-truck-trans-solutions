@@ -1,0 +1,14 @@
+[Desktop Entry]
+Comment=YTTS-customer-sort
+Exec=YTTS-customer-sort
+GenericName=/YTTS-customer-sort
+Icon=/YTTS-customer-sort.png
+Name=YTTS-customer-sort
+NoDisplay=false
+Path[$e]=
+StartupNotify=true
+Terminal=1
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
