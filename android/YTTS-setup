@@ -1,8 +1,5 @@
 #!/bin/bash
 
-ME=$(id -u)
-if [ "$ME" = "0"
-fi
 
 ACCT=$(whoami)
 
