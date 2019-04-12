@@ -14,7 +14,6 @@ DPBX=Dropbox
  
   
 
-if [ -d $HOME/YTTS/bin ]; then
 read -p ' This will overwrite your old installation Y/N : ' decides
 
 if [ "$decides" = "n" ]; then
@@ -22,10 +21,11 @@ if [ "$decides" = "n" ]; then
    exit
 fi 
   
-if[ "$decides" = "N" ]; then
+if [ "$decides" = "N" ]; then
    echo good day $ACCT
    exit
-fi
+fi 
+  
 if [ -d $HOME/YTTS/bin ]; then
 rm -rf $HOME/YTTS
 mkdir -p $HOME/YTTS/bin
