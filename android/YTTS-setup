@@ -55,7 +55,7 @@ if [ -d /sndcard/$DPBX ]; then
 	echo $DPBX lives check link
 	ln -s /sdcard/$DPBX $HOME/$DPBX
 else
-	mkdir -p /sndcard/$DPBX 
+	mkdir -p /sdcard/$DPBX 
 	ln -s /sdcard/$DPBX $HOME/$DPBX
 	cd $HOME/$DPBX/
     git clone $gitname
