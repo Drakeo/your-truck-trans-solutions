@@ -39,7 +39,7 @@ EOF
 
 sh sett
 rm sett
-
+set e
 read -p 'wee need to setup your dropbox Ready Y/N : ' decides
 if [ "$decides" = "n" ]; then
    echo good day $ACCT
@@ -59,10 +59,9 @@ else
 	ln -s /sdcard/$DPBX $HOME/$DPBX
 	cd $HOME/$DPBX/
     git clone $gitname
-    cd $HOME/$DPBX/gitshort
+    cd $HOME/$DPBX/$gitlittle
 	mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
 	cd Deactivated 
 	mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
-	sleep 2
 fi
-exit
+
