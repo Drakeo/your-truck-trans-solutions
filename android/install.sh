@@ -13,6 +13,7 @@ DPBX=Dropbox
 
 if [ -f $HOME/YTTS/bin ]; then
 read -p ' This will overwrite your old installation Y/N : ' decides
+fi
 
 if [ "$decides" = "n" ]; then
    echo good day $ACCT
