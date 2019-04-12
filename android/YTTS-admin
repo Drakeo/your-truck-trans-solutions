@@ -15,9 +15,9 @@ CPADRS="$CPYNAME ADDME"
 # Edit company phone number here
 CAPHONE="PHONME"
 # this shows day of the week
-WDATE=$(date +"%A")
+WDATE=$(date +%A)
 # this shows the todays date
-DATE=$(date +'%-1m-%d-%y')
+DATE=$(date +%m-%d-%y)
 #your company intials
 EMPLY="yourabrv-"
 
