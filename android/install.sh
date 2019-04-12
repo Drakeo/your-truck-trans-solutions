@@ -38,6 +38,6 @@ mkdir -p $HOME/YTTS/bin
 cp -rf YTTS-* $HOME/YTTS/bin/
 cp -rf icons  $HOME/YTTS/
 cp -rf customers $HOME/YTTS/
+fi
 cd  $HOME/YTTS/bin/
 sh YTTS-setup
-fi
