@@ -51,13 +51,18 @@ if [ "$decides" = "N" ]; then
    exit
 fi
 
-
-mkdir -p $HOME/$DPBX
-cd $HOME/$DPBX
-git clone $gitname
-cd $HOME/$DPBX/$gitname
-mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
-cd Deactivated 
-mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
-sleep 2
+if [ -d /sndcard/$DPBX ]; then
+	echo $DPBX lives check link
+	ln -s /sndcard/$DPBX $HOME/$DPBX
+else
+	mkdir -p /sndcard/$DPBX 
+	ln -s /sndcard/$DPBX $HOME/$DPBX
+	cd $HOME/$DPBX/
+    git clone $gitname
+    cd $HOME/$DPBX/$gitname
+	mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
+	cd Deactivated 
+	mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
+	sleep 2
+fi
 exit

@@ -23,36 +23,36 @@ EMPLY="yourabrv-"
 
 #begin YTTS-admin script
 
-	echo -e "\e[1;33m Welcome to Your Trucking Trans Solutions.\e[0m"
+	echo Welcome to Your Trucking Trans Solutions.
 
 while true; do
 set e
-	echo -e "\e[1;33m $ACCT Here are your options.\e[0m"
-	echo -e "\e[1;36m Add An employee first letter of first name then first letter
-	 of last name example the month and year born JDoe0216.\e[0m"
-	echo -e "\e[1;31m Remove An employee .\e[0m"
-	echo -e "\e[1;36m Add a truck or trailer .\e[0m"
-	echo -e "\e[1;31m Remove a truck or trailer .\e[0m"
-	echo -e "\e[1;31m Remove an Employee truck or trailer 
-	Places it in the Deactivated folder .\e[0m"
-	echo -e "\e[1;33m Reminder spelling , add-truck , add-trailer , add-employee .\e[0m"
-	echo -e "\e[1;33m Reminder spelling , rm-truck , rm-trailer , rm-employee .\e[0m"
-	echo -e "\e[1;33m                                
-    Copy paste right from here may help Ok  what do you want to do. .\e[0m"
+	echo $ACCT Here are your options.
+	echo  Add An employee first letter of first name then first letter
+	 of last name example the month and year born JDoe0216.
+	echo Remove An employee .
+	echo  Add a truck or trailer .
+	echo Remove a truck or trailer .
+	echo Remove an Employee truck or trailer 
+	Places it in the Deactivated folder .
+	echo Reminder spelling , add-truck , add-trailer , add-employee .
+	echo Reminder spelling , rm-truck , rm-trailer , rm-employee .
+	echo                                
+    Copy paste right from here may help Ok  what do you want to do. .
     
 # create Variable optiontsk option-task associate it with function 
 
-printf '\e[38;2;255;0;0m  \n'
+
 read -p 'Option?: ' optiontsk
 # add-employee = optiontsk
 if [ "$optiontsk" = "add-employee" ]; then
-	echo -e "\e[1;36m first letter of employee name then last name employee ID .\e[0m"
-	echo -e "\e[1;36m example JSmith0414.\e[0m"
+	echo  first letter of employee name then last name employee ID .
+	echo  example JSmith0414.
 	read -p 'employee name?: ' empname
 # check if employee exist if so ask what are you doing
 if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
-	echo -e "\e[1;33m  this matches another employee name .\e[0m"
-	echo -e "\e[1;33m  are you trying to rm-employee instead .\e[0m"
+	echo  this matches another employee name .
+	echo  are you trying to rm-employee instead .
 else
 	mkdir -p $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Receipts
 	mkdir -p $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Notices
@@ -64,8 +64,8 @@ else
 fi
 # rm-employee = optiontsk
 elif [ "$optiontsk" = "rm-employee" ]; then
-  echo -e "\e[1;36m first letter of employee name then last name employee ID .\e[0m"
-  echo -e "\e[1;36m example JSmith0414.\e[0m"
+  echo first letter of employee name then last name employee ID .
+  echo example JSmith0414.
 read -p 'employee name?: ' empname
 # check if employee exist if so ask for correct spelling open a browser to searh for them
 if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
@@ -73,20 +73,20 @@ if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
 	mv $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Drivers/deactivate-$EMPLY$empname-$DATE
 	rm -rf $HOME/$DPBX/$CPYNAME/Drivers/deactivate-$EMPLY$empname 
 else
-	echo -e "\e[1;33m unable to find employee check spelling cap on?.\e[0m"
-	echo -e "\e[1;33m  are you trying to add-employee instead .\e[0m"
-	echo -e "\e[1;33m  opening a browser to search for it close it when done.\e[0m"
+	echo unable to find employee check spelling cap on?.
+	echo  are you trying to add-employee instead .
+	echo  opening a browser to search for it close it when done.
 	sleep 3
 #    firefox $HOME/$DPBX/$CPYNAME/Drivers  #android  direct link to git-hub
 fi
 # add-truck = optiontsk
 elif [ "$optiontsk" = "add-truck" ]; then
-	echo -e "\e[1;36m Type in truck number example 307.\e[0m"
+	echo  Type in truck number example 307.
 	read -p 'truck number?: ' trkname
 # check if truck exist if so ask what are you doing
 if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname ]; then
-	echo -e "\e[1;33m  this matches another TRK-$trkname .\e[0m"
-	echo -e "\e[1;33m  are you trying to rm-truck instead .\e[0m"
+	echo  this matches another TRK-$trkname .
+	echo  are you trying to rm-truck instead .
 else
 	mkdir -p $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Maintenance
 	mkdir -p $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Permits
@@ -100,7 +100,7 @@ else
 fi
 # rm-truck = optiontsk    
 elif [ "$optiontsk" = "rm-truck" ]; then
-	echo -e "\e[1;36m Type in truck number example 307.\e[0m"
+	echo Type in truck number example 307.
 	read -p 'truck number?: ' trkname
 # check if truck exist if so ask for correct spelling open a browser to searh for them
 if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname  ]; then
@@ -108,20 +108,20 @@ if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname  ]; then
 	mv  $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Trucks/deactivate-TRK-$trkname-$DATE
 	rm -rf $HOME/$DPBX/$CPYNAME/Trucks/deactivate-TRK-$trkname
 else
-	echo -e "\e[1;33m unable to find truck check spelling cap on?.\e[0m"
-	echo -e "\e[1;33m  are you trying to add-truck instead .\e[0m"
-	echo -e "\e[1;33m  opening a browser to search for it close it when done.\e[0m"
+	echo unable to find truck check spelling cap on?.
+	echo  are you trying to add-truck instead .
+	echo  opening a browser to search for it close it when done.
 	sleep 3
 #    firefox $HOME/$DPBX/$CPYNAME/Trucks  #android  direct link to git-hub
 fi
 # add-trailer = optiontsk
 elif [ "$optiontsk" = "add-trailer" ]; then
-	echo -e "\e[1;36m Type in trailer number example 37411.\e[0m"
+	echo  Type in trailer number example 37411.
 	read -p 'trailer number?: ' trlname
 # check if trailer exist if so ask what are you doing
 if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
-	echo -e "\e[1;33m  this matches another TRL-$trlname  .\e[0m"
-	echo -e "\e[1;33m  are you trying to rm-trailer instead .\e[0m"
+	echo  this matches another TRL-$trlname  .
+	echo  are you trying to rm-trailer instead .
 else
 	mkdir -p $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Maintenance
 	mkdir -p $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits
@@ -137,7 +137,7 @@ else
 fi
 # rm-trailer = optiontsk
 elif [ "$optiontsk" = "rm-trailer" ]; then
-	echo -e "\e[1;36m Type in trailer number example 37411.\e[0m"
+	echo  Type in trailer number example 37411.
 	read -p 'trailer number?: ' trlname
 # check if trailer exist if so ask what are you doing
 if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
@@ -145,16 +145,16 @@ if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
 	mv  $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname  $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Trailers/deactivate-TRL-$trlname-$DATE
 	rm -rf $HOME/$DPBX/$CPYNAME/Trailers/deactivate-TRL-$trlname
 else
-	echo -e "\e[1;33m unable to find trailer check spelling cap on?.\e[0m"
-	echo -e "\e[1;33m  are you trying to add-trailer instead .\e[0m"
-	echo -e "\e[1;33m  opening a browser to search for it close it when done.\e[0m"
+	echo unable to find trailer check spelling cap on?.
+	echo  are you trying to add-trailer instead .
+	echo  opening a browser to search for it close it when done.
 	sleep 3
 #    firefox $HOME/$DPBX/$CPYNAME/Trailers #android  direct link to git-hub
 fi
 else
   echo check spelling
 fi
-printf '\e[38;2;255;0;0m  \n'
+
 read -p ' like to run YTTS-admin again with another option task ? Y/N : ' decides
 
 if [ "$decides" = "n" ]; then
@@ -164,13 +164,13 @@ elif [ "$decides" = "N" ]; then
 sh $HOME/YTTS/bin/YTTS-rsync
    exit
 else
-echo -e "\e[1;36m More work $ACCT.\e[0m"
+echo  More work $ACCT.
 sleep 2
 fi
    
 
     for i in {Type in add-truck  add-trailer  add-employee or rm-truck  rm-trailer  rm-employee }; do
-        echo -e "\e[1;34m       $i\e[0m"
+        echo       $i
         sleep 1
     done
 done 	
