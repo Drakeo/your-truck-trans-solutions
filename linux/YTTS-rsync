@@ -29,7 +29,6 @@ if [ "$decides" = "Y" ]; then
    firefox https://www.dropbox.com/home/$CPYNAME 
    exit 
 fi
-#Github name = company name
 
 if [ -d $HOME/$CPYNAME ]; then
 cd $HOME/$CPYNAME 
