@@ -53,13 +53,13 @@ fi
 
 if [ -d /sndcard/$DPBX ]; then
 	echo $DPBX lives check link
-	ln -s /sndcard/$DPBX $HOME/$DPBX
+	ln -s /sdcard/$DPBX $HOME/$DPBX
 else
 	mkdir -p /sndcard/$DPBX 
-	ln -s /sndcard/$DPBX $HOME/$DPBX
+	ln -s /sdcard/$DPBX $HOME/$DPBX
 	cd $HOME/$DPBX/
     git clone $gitname
-    cd $HOME/$DPBX/$gitname
+    cd $HOME/$DPBX/gitshort
 	mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
 	cd Deactivated 
 	mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
