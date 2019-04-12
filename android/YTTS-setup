@@ -34,7 +34,7 @@ sed -i  's/yourabrv/$coabriv/g' YTTS-split
 sed -i  's|githubaddres|$gitname|g' YTTS-rsync
 sed -i  's/ADDME/$address/g' YTTS-admin
 sed -i  's/PHONME/$phone/g' YTTS-admin
-sed -i. 's|gitshort|$gitlittle|g' YTTS-rsync
+sed -i  's|gitshort|$gitlittle|g' YTTS-rsync
 EOF
 
 sh sett
