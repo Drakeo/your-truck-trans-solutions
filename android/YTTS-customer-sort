@@ -36,7 +36,7 @@ fi
 
 while true; do
 
-cat $HOME/.local/share/YTTS/customers
+cat $HOME/YTTS/customers
 
 read -p ' Customer name look above  : ' CUSTR
 read -p ' Customer code look above  : ' CODE
