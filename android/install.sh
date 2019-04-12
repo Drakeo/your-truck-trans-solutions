@@ -11,14 +11,6 @@ ACCT=$(whoami)
 DPBX=Dropbox
 
 
-
-read -p ' This will overwrite your old installation Y/N : ' decides
- 
-  
-if [ "$decides" = "N" ]; then
-   echo Ok $ACCT
-     exit
-fi
  
   
 
