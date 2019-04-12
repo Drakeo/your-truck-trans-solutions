@@ -4,6 +4,29 @@ if [ "$ME" = "0" ]; then
 echo do not run this as root 
 exit 
 fi
+read -p '!! Do you need to update Dropbox from Android   Y/N : ' decides
+if [ "$decides" = "n" ]; then
+   echo Ok $ACCT
+fi 
+  
+if [ "$decides" = "N" ]; then
+   echo Ok $ACCT
+fi
+if [ "$decides" = "y" ]; then
+   rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
+   $HOME/gitshort $HOME/Dropbox/comin/ 
+      read -p 'push enter create any new links or share in Dropbox: ' hope
+    firefox https://www.dropbox.com/home/$CPYNAME
+    exit 
+fi 
+  
+if [ "$decides" = "Y" ]; then
+   rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
+   $HOME/gitshort $HOME/Dropbox/comin/
+   read -p 'push enter create any new links or share in Dropbox: ' hope
+   firefox https://www.dropbox.com/home/$CPYNAME 
+   exit 
+fi
 #Github name = company name
 CPYNAME="comin"
 if [ -d $HOME/$CPYNAME ]; then
