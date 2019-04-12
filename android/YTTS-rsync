@@ -4,27 +4,32 @@ if [ "$ME" = "0" ]; then
 echo do not run this as root 
 exit 
 fi
+#we do things in revers for android do to data use and storage limitations
+#dropbox lives in your git-hub on andriod then sync to dropbox from computer.
+DPBX=Dropbox
+
 #Github name = company name
 CPYNAME="comin"
-if [ -d $HOME/$CPYNAME ]; then
-cd $HOME/$CPYNAME 
+if [ -d $HOME/$DPBX/$CPYNAME ]; then
+cd $HOME/$DPBX/$CPYNAME 
   git checkout master 
   git pull
 cd $HOME
 else
-cd $HOME
+mkdir -p $HOME/$DPBX
+cd $HOME/$DPBX/
   git clone githubaddres
 fi
 echo make backup of dropbox
 sleep 3
-rsync -r -a -v  --progress --stats --exclude .git $HOME/Dropbox/ Dropbox-bkp/
-rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
- $HOME/Dropbox/comin  $HOME/gitshort/
+#rsync -r -a -v  --progress --stats --exclude .git $HOME/Dropbox/ Dropbox-bkp/
+#rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
+# $HOME/Dropbox/comin  $HOME/gitshort/
 
 echo ok going to comit changes
 
 cat > gitadd <<EOF
-cd $HOME/comin
+cd $HOME/Dropbox/comin 
 git add -A
 git commit -a -m 'upload`date +%s`'
 git push

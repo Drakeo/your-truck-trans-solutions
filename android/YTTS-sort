@@ -152,6 +152,6 @@ echo -e "\e[1;33m daily weekly monthly have been created\e[0m"
 echo -e "\e[1;33m ok going to comit changes.\e[0m"
 echo -e "\e[1;32m pause 3 seconds to read this\e[0m"
 sleep 3
-$HOME/.local/share/YTTS/bin/YTTS-rsync
+sh $HOME/YTTS/bin/YTTS-rsync
 
 

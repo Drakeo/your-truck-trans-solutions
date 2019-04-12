@@ -105,7 +105,7 @@ else
 	echo -e "\e[1;33m  are you trying to add-employee instead .\e[0m"
 	echo -e "\e[1;33m  opening a browser to search for it close it when done.\e[0m"
 	sleep 3
-    firefox $HOME/$DPBX/$CPYNAME/Drivers
+#    firefox $HOME/$DPBX/$CPYNAME/Drivers  #android  direct link to git-hub
 fi
 # add-truck = optiontsk
 elif [ "$optiontsk" = "add-truck" ]; then
@@ -140,7 +140,7 @@ else
 	echo -e "\e[1;33m  are you trying to add-truck instead .\e[0m"
 	echo -e "\e[1;33m  opening a browser to search for it close it when done.\e[0m"
 	sleep 3
-    firefox $HOME/$DPBX/$CPYNAME/Trucks
+#    firefox $HOME/$DPBX/$CPYNAME/Trucks  #android  direct link to git-hub
 fi
 # add-trailer = optiontsk
 elif [ "$optiontsk" = "add-trailer" ]; then
@@ -177,7 +177,7 @@ else
 	echo -e "\e[1;33m  are you trying to add-trailer instead .\e[0m"
 	echo -e "\e[1;33m  opening a browser to search for it close it when done.\e[0m"
 	sleep 3
-    firefox $HOME/$DPBX/$CPYNAME/Trailers
+#    firefox $HOME/$DPBX/$CPYNAME/Trailers #android  direct link to git-hub
 fi
 else
   echo check spelling
@@ -186,10 +186,10 @@ printf '\e[38;2;255;0;0m  \n'
 read -p ' like to run YTTS-admin again with another option task ? Y/N : ' decides
 
 if [ "$decides" = "n" ]; then
-sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+sh $HOME/YTTS/bin/YTTS-rsync
    exit
 elif [ "$decides" = "N" ]; then
-sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+sh $HOME/YTTS/bin/YTTS-rsync
    exit
 else
 echo -e "\e[1;36m More work $ACCT.\e[0m"

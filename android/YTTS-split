@@ -70,4 +70,4 @@ cp *$EMPLY*/split-*.png $SDRVBOL
 cp *$EMPLY*/split-*.pdf $SDRVBOL 
 mv $HOME/$DPBX/$CPYNAME/Drivers/$SDRVBOL  $HOME/$DPBX/$CPYNAME/Splits/
 fi
-sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+sh $HOME/YTTS/bin/YTTS-rsync

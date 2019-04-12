@@ -115,10 +115,10 @@ printf '\e[38;2;255;0;0m  \n'
 read -p ' like to run YTTS-admin again with another option task ? Y/N : ' decides
 
 if [ "$decides" = "n" ]; then
-sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+sh $HOME/YTTS/bin/YTTS-rsync
    exit
 elif [ "$decides" = "N" ]; then
-sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+sh $HOME/YTTS/bin/YTTS-rsync
    exit
 else
 echo -e "\e[1;36m More Customers $ACCT.\e[0m"
