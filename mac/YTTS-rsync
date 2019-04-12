@@ -1,5 +1,7 @@
 #!/bin/bash
 ME=$(id -u)
+#Github name = company name
+CPYNAME="comin"
 if [ "$ME" = "0" ]; then
 echo do not run this as root 
 exit 
@@ -27,8 +29,7 @@ if [ "$decides" = "Y" ]; then
    firefox https://www.dropbox.com/home/$CPYNAME 
    exit 
 fi
-#Github name = company name
-CPYNAME="comin"
+
 if [ -d $HOME/$CPYNAME ]; then
 cd $HOME/$CPYNAME 
   git checkout master 
