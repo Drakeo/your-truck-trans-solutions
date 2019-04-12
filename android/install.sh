@@ -41,3 +41,4 @@ cp -rf customers $HOME/YTTS/
 fi
 cd  $HOME/YTTS/bin/
 sh YTTS-setup
+exit
