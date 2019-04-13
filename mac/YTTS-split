@@ -5,10 +5,10 @@ echo do not run this as root
 exit 
 fi
 ACCT=$(whoami)
-DATE=$(date +'%-1m-%d-%y')
+DATE=$(date +'%m-%d-%y')
 WDATE=$(date +"%A")
 SDRVBOL="split-DRV-bol-$DATE"
-MDATE=$(date +'%-1m-%Y')
+MDATE=$(date +'%m-%Y')
 YDATE=$(date +'%Y')
 # your company name
 CPYNAME="comin"
