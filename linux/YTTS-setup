@@ -40,12 +40,12 @@ else
 fi
 
 
+
+echo -e "\e[1;33m the actual name of the github  example demo-trucking-company .\e[0m"
 printf '\e[38;2;255;0;0m  \n'
 read -p 'the name of your company: ' repcomin
 echo -e "\e[1;33m Example https://github.com/Drakeo/demo-trucking-company.git .\e[0m"
 read -p 'the name of your git-hub click clone and copy past it here : ' gitname
-echo -e "\e[1;33m the actual name of the github  example demo-trucking-company .\e[0m"
-read -p 'the actual name of the github  : ' gitlittle
 echo -e "\e[1;33m Upercase caps Best Trucking Company type BTC .\e[0m"
 read -p 'company abriviations all caps sorts drivers Eample  Young Truckers Inc type in DTC  : ' coabriv
 read -p 'company address   : ' address
@@ -66,7 +66,6 @@ sed -i 's/yourabrv/$coabriv/g' YTTS-split
 sed -i 's|githubaddres|$gitname|g' YTTS-rsync
 sed -i 's/ADDME/$address/g' YTTS-admin
 sed -i 's/PHONME/$phone/g' YTTS-admin
-sed -i 's|gitshort|$gitlittle|g' YTTS-rsync
 EOF
 sh sett
 rm sett
@@ -101,8 +100,8 @@ if [ "$decides" = "N" ]; then
 fi
 
 
-mkdir -p $HOME/$DPBX/$gitlittle
-cd $HOME/$DPBX/$gitlittle
+mkdir -p $HOME/$DPBX/$repcomin
+cd $HOME/$DPBX/$repcomin
 mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
 cd Deactivated 
 mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
