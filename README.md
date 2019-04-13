@@ -2,6 +2,7 @@
 What is your Truck Trans Soultions YTTS.
 ~~~
 # linux and OSX Mac  users just use the install scripts.
+# Android "First" install Termux , TermuxAPI, 
 # You can do this for under 30 dollars a month
 # Runs on Slackware in virtual machine on all computers.
 # Keep it simple
