@@ -15,6 +15,9 @@ if [ "$decides" = "N" ]; then
    echo Ok $ACCT
 fi
 if [ "$decides" = "y" ]; then
+	cd $HOME/$CPYNAME 
+	git checkout master 
+	git pull
    rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
    $HOME/gitshort $HOME/Dropbox/comin/ 
       read -p 'push enter create any new links or share in Dropbox: ' hope
@@ -23,6 +26,9 @@ if [ "$decides" = "y" ]; then
 fi 
   
 if [ "$decides" = "Y" ]; then
+	cd $HOME/$CPYNAME 
+	git checkout master 
+	git pull
    rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
    $HOME/gitshort $HOME/Dropbox/comin/
    read -p 'push enter create any new links or share in Dropbox: ' hope

@@ -25,8 +25,9 @@ if [ "$decides" = "N" ]; then
 fi
 rm -rf $HOME/Documents/YTTS
 mkdir -p $HOME/Documents/YTTS/bin
-cp  YTTS-admin  YTTS-customer-sort  YTTS-payroll  YTTS-rsync  YTTS-setup  YTTS-sort  YTTS-split  $HOME/Documents/YTTS/bin/
+cp    YTTS-setup    $HOME/Documents/YTTS/bin/
 cp -rf customers $HOME/Documents/YTTS/
+cp -rf inytts $HOME/Documents/YTTS/
 cd  $HOME/Documents/YTTS/bin/
 sh YTTS-setup
 else

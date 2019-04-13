@@ -10,7 +10,14 @@ ACCT=$(whoami)
 
 DPBX=Dropbox
 DESK="$HOME/Documents/YTTS/bin"
+INTTYS="$HOME/Documents/YTTS/inytts"
 
+cp -rf $INTTYS/YTTS-admin.in YTTS-admin
+cp -rf $INTTYS/YTTS-customer-sort.in YTTS-customer-sort
+cp -rf $INTTYS/YTTS-payroll.in YTTS-payroll
+cp -rf $INTTYS/YTTS-rsync.in YTTS-rsync
+cp -rf $INTTYS/YTTS-sort.in YTTS-sort
+cp -rf $INTTYS/YTTS-split.in YTTS-split
 
 echo Welcome $ACCT
 echo the actual name of the github  example demo-trucking-company 

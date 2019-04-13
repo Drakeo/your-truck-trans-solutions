@@ -11,6 +11,7 @@ ACCT=$(whoami)
 DPBX=Dropbox
 DESK="$HOME/.local/share/YTTS/bin"
 ICON="$HOME/.local/share/YTTS/icons"
+INTTYS="$HOME/.local/share/YTTS/inytts"
 
 	echo -e "\e[1;33m Welcome to Your Trucking Trans Solutions.\e[0m"
 	echo -e "\e[1;33m One quick question \e[0m"
@@ -39,7 +40,12 @@ else
     exit
 fi
 
-
+cp -rf $INTTYS/YTTS-admin.in YTTS-admin
+cp -rf $INTTYS/YTTS-customer-sort.in YTTS-customer-sort
+cp -rf $INTTYS/YTTS-payroll.in YTTS-payroll
+cp -rf $INTTYS/YTTS-rsync.in YTTS-rsync
+cp -rf $INTTYS/YTTS-sort.in YTTS-sort
+cp -rf $INTTYS/YTTS-split.in YTTS-split
 
 echo -e "\e[1;33m the actual name of the github  example demo-trucking-company .\e[0m"
 printf '\e[38;2;255;0;0m  \n'
