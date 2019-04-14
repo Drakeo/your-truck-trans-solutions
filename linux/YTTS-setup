@@ -12,6 +12,8 @@ DPBX=Dropbox
 DESK="$HOME/.local/share/YTTS/bin"
 ICON="$HOME/.local/share/YTTS/icons"
 INTTYS="$HOME/.local/share/YTTS/inytts"
+DESKTP="$HOME/.local/share/YTTS/desktop"
+SHARE="$HOME/.local/share/applications"
 
 	echo -e "\e[1;33m Welcome to Your Trucking Trans Solutions.\e[0m"
 	echo -e "\e[1;33m One quick question \e[0m"
@@ -39,7 +41,13 @@ else
     sleep 5
     exit
 fi
-
+cp -rf $DESKTP/YTTS-admin.desktop  $SHARE
+cp -rf $DESKTP/YTTS-customer-sort.desktop $SHARE
+cp -rf $DESKTP/YTTS-payroll.desktop $SHARE
+cp -rf $DESKTP/YTTS-rsync.desktop $SHARE
+cp -rf $DESKTP/YTTS-setup.desktop $SHARE
+cp -rf $DESKTP/YTTS-sort.desktop $SHARE
+cp -rf $DESKTP/YTTS-split.desktop $SHARE
 cp -rf $INTTYS/YTTS-admin.in YTTS-admin
 cp -rf $INTTYS/YTTS-customer-sort.in YTTS-customer-sort
 cp -rf $INTTYS/YTTS-payroll.in YTTS-payroll
@@ -79,13 +87,15 @@ cd $HOME/.local/share/applications
 cat > dsett <<EOF
 sed -i 's|Exec=|Exec=$DESK|g' YTTS-admin.desktop 
 sed -i 's|Exec=|Exec=$DESK|g' YTTS-payroll.desktop 
-sed -i 's|Exec=|Exec=$DESK|g' YTTS-rsync.desktop 
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-rsync.desktop
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-setup.desktop  
 sed -i 's|Exec=|Exec=$DESK|g' YTTS-sort.desktop 
 sed -i 's|Exec=|Exec=$DESK|g' YTTS-split.desktop
 sed -i 's|Exec=|Exec=$DESK|g' YTTS-customer-sort.desktop  
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-admin.desktop 
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-payroll.desktop 
-sed -i 's|Icon=|Icon=$ICON|g' YTTS-rsync.desktop 
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-rsync.desktop
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-setup.desktop  
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-sort.desktop 
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-split.desktop
 sed -i 's|Icon=|Icon=$ICON|g' YTTS-customer-sort.desktop  
