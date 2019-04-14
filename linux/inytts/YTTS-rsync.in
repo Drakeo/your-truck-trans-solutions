@@ -19,7 +19,7 @@ if [ "$decides" = "y" ]; then
 	git checkout master 
 	git pull
    rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
-   $HOME/gitshort $HOME/Dropbox/comin/ 
+   $HOME/comin $HOME/Dropbox/
       read -p 'push enter create any new links or share in Dropbox: ' hope
     firefox https://www.dropbox.com/home/$CPYNAME
     exit 
@@ -30,7 +30,7 @@ if [ "$decides" = "Y" ]; then
 	git checkout master 
 	git pull
    rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
-   $HOME/gitshort $HOME/Dropbox/comin/
+   $HOME/comin $HOME/Dropbox/
    read -p 'push enter create any new links or share in Dropbox: ' hope
    firefox https://www.dropbox.com/home/$CPYNAME 
    exit 
