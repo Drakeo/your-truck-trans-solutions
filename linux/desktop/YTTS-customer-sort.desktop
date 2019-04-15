@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment=YTTS-customer-sort
-Exec=YTTS-customer-sort
-GenericName=/YTTS-customer-sort
+Exec=/YTTS-customer-sort
+GenericName=YTTS-customer-sort
 Icon=/YTTS-customer-sort.png
 Name=YTTS-customer-sort
 NoDisplay=false
