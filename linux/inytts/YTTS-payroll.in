@@ -88,6 +88,6 @@ $HOME/.local/share/YTTS/bin/YTTS-rsync
 echo -e "\e[1;33m open firefox.\e[0m"
 sleep 3
 fi
-firefox $HOME/$DPBX/$CPYNAME/Drivers
+nohup firefox $HOME/$DPBX/$CPYNAME/Drivers &
 
 echo good day $ACCT
