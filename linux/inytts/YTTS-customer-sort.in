@@ -53,7 +53,7 @@ echo on to sorting
 elif [ "$askedit" = "N" ]; then
 echo onto sorting 
 else   
-nohup kwrite $HOME/.local/share/YTTS/customers &
+nohup kwrite $HOME/.local/share/YTTS/customers >/dev/null &
 echo onto sorting
 fi
 
