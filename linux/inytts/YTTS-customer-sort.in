@@ -52,8 +52,8 @@ if [ "$askedit" = "n" ]; then
 echo on to sorting
 elif [ "$askedit" = "N" ]; then
 echo onto sorting 
-else
-kwrite $HOME/.local/share/YTTS/customers
+else   
+nohup kwrite $HOME/.local/share/YTTS/customers >/dev/null &
 echo onto sorting
 fi
 
