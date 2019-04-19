@@ -110,7 +110,7 @@ if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
 	rm -rf $HOME/$DPBX/$CPYNAME/Drivers/deactivate-$EMPLY$empname 
 else
 kdialog --title "YTTS-admin" --sorry "No Matching Employee searching now ";
-nohup  firefox $HOME/$DPBX/$CPYNAME/Drivers &
+nohup  firefox $HOME/$DPBX/$CPYNAME/Drivers >/dev/null &
 fi
 # add-truck = optiontsk
 elif [ "$optiontsk" = "add-truck" ]; then
@@ -140,7 +140,7 @@ else
 	echo place permits here TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Permits/Permits.txt
     qrencode -o $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/qrcode-TRK-$trkname.png  https://www.dropbox.com/home/$CPYNAME/Trucks/TRK-$trkname
     kdialog --title "YTTS-admin" --msgbox "push enter create truck link for drivers ";
-nohup  firefox https://www.dropbox.com/home/$CPYNAME/Trucks &
+nohup  firefox https://www.dropbox.com/home/$CPYNAME/Trucks >/dev/null &
 fi
 # rm-truck = optiontsk    
 elif [ "$optiontsk" = "rm-truck" ]; then
@@ -165,7 +165,7 @@ if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname  ]; then
 	rm -rf $HOME/$DPBX/$CPYNAME/Trucks/deactivate-TRK-$trkname
 else
 	kdialog --title "YTTS-admin" --sorry "No Matching Truck number searching now ";
-nohup  firefox $HOME/$DPBX/$CPYNAME/Trucks &
+nohup  firefox $HOME/$DPBX/$CPYNAME/Trucks >/dev/null &
 fi
 # add-trailer = optiontsk
 elif [ "$optiontsk" = "add-trailer" ]; then
@@ -197,7 +197,7 @@ else
 	echo activate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits/Permits.txt
 	qrencode -o $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/qrcode-TRL-$trlname.png  https://www.dropbox.com/home/$CPYNAME/Trailers/TRL-$trlname
     kdialog --title "YTTS-admin" --msgbox "push enter create trailer link for drivers ";
-nohup  firefox https://www.dropbox.com/home/$CPYNAME/Trailers &
+nohup  firefox https://www.dropbox.com/home/$CPYNAME/Trailers >/dev/null &
 fi
 # rm-trailer = optiontsk
 elif [ "$optiontsk" = "rm-trailer" ]; then
@@ -223,7 +223,7 @@ if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
 else
 	kdialog --title "YTTS-admin" --sorry "No Matching Trailer number searching now ";
 
-nohup  firefox $HOME/$DPBX/$CPYNAME/Trailers &
+nohup  firefox $HOME/$DPBX/$CPYNAME/Trailers >/dev/null &
 fi
 else
   echo check spelling
