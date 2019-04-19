@@ -60,7 +60,7 @@ esac;
 # add-employee = optiontsk
 if [ "$optiontsk" = "add-employee" ]; then
 	Aemployee=$(kdialog --title "YTTS-admin" --inputbox "Example add Fred Smith month year of birthdate FSmith0214");
-	COMP="Your employee name is  " 
+
 case "$?" in
 	0)
 		;;
@@ -89,7 +89,7 @@ fi
 # rm-employee = optiontsk
 elif [ "$optiontsk" = "rm-employee" ]; then
 	Remployee=$(kdialog --title "YTTS-admin" --inputbox "Example Remove Fred Smith month year of birthdate FSmith0214");
-	COMP="Your employee name is  " 
+
 case "$?" in
 	0)
 		;;
@@ -110,12 +110,11 @@ if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
 	rm -rf $HOME/$DPBX/$CPYNAME/Drivers/deactivate-$EMPLY$empname 
 else
 kdialog --title "YTTS-admin" --sorry "No Matching Employee searching now ";
-    firefox $HOME/$DPBX/$CPYNAME/Drivers
+nohup  firefox $HOME/$DPBX/$CPYNAME/Drivers &
 fi
 # add-truck = optiontsk
 elif [ "$optiontsk" = "add-truck" ]; then
 	Atruck=$(kdialog --title "YTTS-admin" --inputbox "Add your Truck number Example 307 ");
-	COMP="Your Truck Number is example 307  " 
 case "$?" in
 	0)
 		;;
@@ -141,12 +140,11 @@ else
 	echo place permits here TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Permits/Permits.txt
     qrencode -o $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/qrcode-TRK-$trkname.png  https://www.dropbox.com/home/$CPYNAME/Trucks/TRK-$trkname
     kdialog --title "YTTS-admin" --msgbox "push enter create truck link for drivers ";
-    firefox https://www.dropbox.com/home/$CPYNAME/Trucks
+nohup  firefox https://www.dropbox.com/home/$CPYNAME/Trucks &
 fi
 # rm-truck = optiontsk    
 elif [ "$optiontsk" = "rm-truck" ]; then
 	Rtruck=$(kdialog --title "YTTS-admin" --inputbox "Remove your Truck number Example 307 ");
-	COMP="Your Truck Number is example 307  " 
 case "$?" in
 	0)
 		;;
@@ -167,12 +165,11 @@ if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname  ]; then
 	rm -rf $HOME/$DPBX/$CPYNAME/Trucks/deactivate-TRK-$trkname
 else
 	kdialog --title "YTTS-admin" --sorry "No Matching Truck number searching now ";
-    firefox $HOME/$DPBX/$CPYNAME/Trucks
+nohup  firefox $HOME/$DPBX/$CPYNAME/Trucks &
 fi
 # add-trailer = optiontsk
 elif [ "$optiontsk" = "add-trailer" ]; then
 A	trailer=$(kdialog --title "YTTS-admin" --inputbox "Add your Trailer number Example 53007 ");
-	COMP="Your Truck Number is example 307  " 
 case "$?" in
 	0)
 		;;
@@ -200,12 +197,11 @@ else
 	echo activate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits/Permits.txt
 	qrencode -o $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/qrcode-TRL-$trlname.png  https://www.dropbox.com/home/$CPYNAME/Trailers/TRL-$trlname
     kdialog --title "YTTS-admin" --msgbox "push enter create trailer link for drivers ";
-    firefox https://www.dropbox.com/home/$CPYNAME/Trailers
+nohup  firefox https://www.dropbox.com/home/$CPYNAME/Trailers &
 fi
 # rm-trailer = optiontsk
 elif [ "$optiontsk" = "rm-trailer" ]; then
 	Rtrailer=$(kdialog --title "YTTS-admin" --inputbox "Remover your Trailer number Example 53007 ");
-	COMP="Your Truck Number is example 307  " 
 case "$?" in
 	0)
 		;;
@@ -227,7 +223,7 @@ if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
 else
 	kdialog --title "YTTS-admin" --sorry "No Matching Trailer number searching now ";
 
-    firefox $HOME/$DPBX/$CPYNAME/Trailers
+nohup  firefox $HOME/$DPBX/$CPYNAME/Trailers &
 fi
 else
   echo check spelling
