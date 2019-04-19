@@ -30,26 +30,63 @@ else
     exit
 fi
 
-read -p ' like to add a customer to the list first ? Y/N : ' askedit
-if [ "$askedit" = "n" ]; then
-echo on to sorting
-elif [ "$askedit" = "N" ]; then
-echo onto sorting 
+#ask edit or look up customers and code
+
+kdialog --yesno "Do you need to Add or look up a Customer";
+
+if [ "$?" = 0 ]; then
+	kdialog --msgbox "Ok looking them up";
+	askedit="Y";
+elif [ "$?" = 1 ]; 	then
+	kdialog --msgbox " OK good lets get started ";
+	askedit="N";
 else
-kwrite $HOME/.local/share/YTTS/customers
+	kdialog --error "ERROR";
+fi
+ 
+if [ "$askedit" = "N" ]; then
+echo on to sorting
+else
+nohup kwrite $HOME/.local/share/YTTS/customers &
 echo onto sorting
 fi
 
-
+#start the loop
 while true; do
+#customer name
+variable=$(kdialog --inputbox "Customer Name ");
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL Exiting ";
+		exit ;
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+echo $variable >> /tmp/kde-$ID/customer.txt
+CUSTR=$(sed -n 1p /tmp/kde-$ID/customer.txt)
+rm /tmp/kde-$ID/customer.txt
+#customer code
+variable=$(kdialog --inputbox "Customer Code");
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL Exiting ";
+		exit ;
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+echo $variable >> /tmp/kde-$ID/custcode.txt
+CODE=$(sed -n 1p /tmp/kde-$ID/custcode.txt)
+rm /tmp/kde-$ID/custcode.txt
 
-cat $HOME/.local/share/YTTS/customers
-
-read -p ' Customer name look above  : ' CUSTR
-read -p ' Customer code look above  : ' CODE
-
-
-
+#sort by week
 if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$DATE ]; then
 cd $HOME/$DPBX/$CPYNAME/Weekly/
 mkdir -p $HOME/$DPBX/$CPYNAME/Weekly/../Customers/$CUSTR
@@ -65,7 +102,7 @@ cp DRV-bol-*/$CODE-*.jpeg ../Customers/$CUSTR/$CUSTR-$DATE
 cp DRV-bol-*/$CODE-*.png ../Customers/$CUSTR/$CUSTR-$DATE
 cp DRV-bol-*/$CODE-*.pdf ../Customers/$CUSTR/$CUSTR-$DATE
 fi
-
+#sort by month
 if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE ]; then
 cd $HOME/$DPBX/$CPYNAME/Monthly/
 cp DRV-bol-*/$CODE-*.jpg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
@@ -79,7 +116,8 @@ cp DRV-bol-*/$CODE-*.jpg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE
 cp DRV-bol-*/$CODE-*.jpeg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
 cp DRV-bol-*/$CODE-*.png $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
 cp DRV-bol-*/$CODE-*.pdf $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$MDATE 
-fi 
+fi
+#sort by year 
 if [ -d $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE ]; then
 cd $HOME/$DPBX/$CPYNAME/Yearly/
 cp DRV-bol-*/$CODE-*.jpg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
@@ -93,23 +131,25 @@ cp DRV-bol-*/$CODE-*.jpg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE
 cp DRV-bol-*/$CODE-*.jpeg $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
 cp DRV-bol-*/$CODE-*.png $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
 cp DRV-bol-*/$CODE-*.pdf $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
-fi 
-printf '\e[38;2;255;0;0m  \n'
-read -p ' like to run YTTS-admin again with another option task ? Y/N : ' decides
+fi
+# start over ? 
+kdialog --yesno "Would you like to run customer-sort again";
 
-if [ "$decides" = "n" ]; then
-sh $HOME/.local/share/YTTS/bin/YTTS-rsync
-   exit
-elif [ "$decides" = "N" ]; then
+if [ "$?" = 0 ]; then
+	kdialog --msgbox "Ok $ACCT again";
+	decides="Y";
+elif [ "$?" = 1 ]; 	then
+	kdialog --msgbox " OK lets back up our work ";
+	decides="N";
+else
+	kdialog --error "ERROR";
+fi; 
+echo $decides
+
+if [ "$decides" = "N" ]; then
 sh $HOME/.local/share/YTTS/bin/YTTS-rsync
    exit
 else
-echo -e "\e[1;36m More Customers $ACCT.\e[0m"
-sleep 2
+kdialog --title "YTTS-customer-sort" --msgbox "More work $ACCT";
 fi
-
-    for i in {Type customer name and code }; do
-        echo -e "\e[1;34m       $i\e[0m"
-        sleep 1
-    done
 done 	
