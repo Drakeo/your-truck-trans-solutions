@@ -7,7 +7,7 @@ echo do not run this as root
 exit 
 fi
 
-kdialog --title "YTTS-rsync" --msgbox "YTTS-rsync backup and send to git ";
+kdialog --title "YTTS-rsync" --caption "YTTS-rsync" --icon "K-YTTS"  --msgbox "YTTS-rsync backup and send to git ";
 
 if [ -d $HOME/$CPYNAME ]; then
 cd $HOME/$CPYNAME 
@@ -34,4 +34,4 @@ git push
 EOF
 sh gitadd
 rm gitadd
-kdialog --title "YTTS-rsync" --msgbox "check your githubaddres ";
+kdialog --title "YTTS-rsync" --caption "YTTS-rsync" --icon "K-YTTS" --msgbox "check your githubaddres ";

@@ -1,5 +1,6 @@
 #!/bin/bash
 ME=$(id -u)
+ID=$(id -run)
 if [ "$ME" = "0" ]; then
 echo do not run this as root 
 exit 
@@ -20,32 +21,29 @@ DPBX=Dropbox
 EMPLY="yourabrv-"
 #begin YTTS-sort script
 
-if su -c true "$USER"; then
-  echo -e "\e[1;31m Correct password\e[0m"
+if [ "${START:-no}" = "yes" ]; then
+ echo lets install
 else
-    echo -e "\e[1;31m sorry User Name or Password does not match\e[0m"
-    echo -e "\e[1;31m check your spelling caps on ?\e[0m"
-    sleep 5
+if su -c true "$USER"; then
+	echo -e "\e[1;31m Correct password\e[0m"
+else
+	kdialog --title "YTTS-sort" --caption "YTTS-sort" --icon "K-YTTS"  --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
     exit
+fi
 fi
 
 
-	kdialog --yesno "like to run YTTS-admin again with another option task ";
+	kdialog --title "YTTS-sort" --caption "YTTS-sort" --icon "K-YTTS" --yesno "Would you like to run YTTS-sort ";
 
 if [ "$?" = 0 ]; then
-	kdialog --msgbox "OK back to work $ACCT";
+	kdialog --title "YTTS-sort" --caption "YTTS-sort" --icon "K-YTTS"--msgbox "Click OK sorting $ACCT";
 	decides="Y";
 elif [ "$?" = 1 ]; 	then
-	kdialog --sorry "OK all done $ACCT";
+	kdialog --title "YTTS-sort" --caption "YTTS-sort" --icon "K-YTTS" --sorry "Click OK all done $ACCT";
 	decides="N";
 else
 	kdialog --error "ERROR";
 fi
-
-if [ "$decides" = "n" ]; then
-   echo good day $ACCT
-   exit
-fi 
   
 if [ "$decides" = "N" ]; then
    echo good day $ACCT
@@ -140,7 +138,7 @@ cp DRV-bol-*/*.png $YDRVBOL
 cp DRV-bol-*/*.pdf $YDRVBOL
 mv $HOME/$DPBX/$CPYNAME/Monthly/$YDRVBOL $HOME/$DPBX/$CPYNAME/Yearly/
 fi
-kdialog --title "YTTS-sort" --msgbox "daily weekly monthly have been created ";
+kdialog --icon "K-YTTS" --title "YTTS-sort" --msgbox "daily weekly monthly have been created ";
 $HOME/.local/share/YTTS/bin/YTTS-rsync
 
 

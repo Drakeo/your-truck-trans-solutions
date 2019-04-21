@@ -1,0 +1,24 @@
+#!/bin/bash
+if su -c true "$USER"; then
+	kdialog  --title "YTTS-service" --caption "YTTS Programs" --icon "K-YTTS" --msgbox "<h1>Please select your Program from drop-down list next</h1>" 
+else
+	kdialog --title "YTTS-start" --caption "YTTS-start" --icon "K-YTTS"  --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
+    exit
+fi
+
+choice=$(kdialog  --geometry 550x150+150+150 --title "YTTS-service" --caption "click drop down menu" --icon K-YTTS  --combobox "<h1>Your Truck Trans Solutions</h1>"  "YTTS-admin"  "YTTS-rsync" \
+"YTTS-sort"   "YTTS-customer-sort"  "YTTS-split"  "YTTS-payroll" );
+
+
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+START=yes sh $HOME/.local/share/YTTS/bin/$choice
+

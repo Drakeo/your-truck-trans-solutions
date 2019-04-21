@@ -1,5 +1,6 @@
 #!/bin/bash
 ME=$(id -u)
+ID=$(id -run)
 if [ "$ME" = "0" ]; then
 echo do not run this as root 
 exit 
@@ -21,24 +22,26 @@ DPBX=Dropbox
 #begin YTTS-sort script
 
 
-if su -c true "$USER"; then
-  echo -e "\e[1;31m Correct password\e[0m"
+if [ "${START:-no}" = "yes" ]; then
+ echo lets install
 else
-    echo -e "\e[1;31m sorry User Name or Password does not match\e[0m"
-    echo -e "\e[1;31m check your spelling caps on ?\e[0m"
-    sleep 5
+if su -c true "$USER"; then
+	echo -e "\e[1;31m Correct password\e[0m"
+else
+	kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
     exit
+fi
 fi
 
 #ask edit or look up customers and code
 
-kdialog --yesno "Do you need to Add or look up a Customer";
+kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS" --yesno "Do you need to Add or look up a Customer";
 
 if [ "$?" = 0 ]; then
-	kdialog --msgbox "Ok looking them up";
+	kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --msgbox "Click OK looking them up";
 	askedit="Y";
 elif [ "$?" = 1 ]; 	then
-	kdialog --msgbox " OK good lets get started ";
+	kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --msgbox " Click OK good lets get started ";
 	askedit="N";
 else
 	kdialog --error "ERROR";
@@ -54,32 +57,32 @@ fi
 #start the loop
 while true; do
 #customer name
-variable=$(kdialog --inputbox "Customer Name ");
+variable=$(kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS" --inputbox "Customer Name ");
 case "$?" in
 	0)
 		;;
 	1)
-		kdialog --sorry "YOU CHOSE CANCEL Exiting ";
+		kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --sorry "YOU CHOSE CANCEL Exiting ";
 		exit ;
 		;;
 	*)
-		kdialog --error "ERROR";
+		kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --error "ERROR";
 		;;
 esac;
 echo $variable >> /tmp/kde-$ID/customer.txt
 CUSTR=$(sed -n 1p /tmp/kde-$ID/customer.txt)
 rm /tmp/kde-$ID/customer.txt
 #customer code
-variable=$(kdialog --inputbox "Customer Code");
+variable=$(kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --inputbox "Customer Code");
 case "$?" in
 	0)
 		;;
 	1)
-		kdialog --sorry "YOU CHOSE CANCEL Exiting ";
+		kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --sorry "YOU CHOSE CANCEL Exiting ";
 		exit ;
 		;;
 	*)
-		kdialog --error "ERROR";
+		kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --error "ERROR";
 		;;
 esac;
 echo $variable >> /tmp/kde-$ID/custcode.txt
@@ -133,16 +136,16 @@ cp DRV-bol-*/$CODE-*.png $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE
 cp DRV-bol-*/$CODE-*.pdf $HOME/$DPBX/$CPYNAME/Customers/$CUSTR/$CUSTR-$YDATE 
 fi
 # start over ? 
-kdialog --yesno "Would you like to run customer-sort again";
+kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --yesno "Would you like to run customer-sort again";
 
 if [ "$?" = 0 ]; then
-	kdialog --msgbox "Ok $ACCT again";
+	kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --msgbox "Click OK $ACCT again";
 	decides="Y";
 elif [ "$?" = 1 ]; 	then
-	kdialog --msgbox " OK lets back up our work ";
+	kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --msgbox " Click OK lets back up our work ";
 	decides="N";
 else
-	kdialog --error "ERROR";
+	kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS"  --error "ERROR";
 fi; 
 echo $decides
 
@@ -150,6 +153,6 @@ if [ "$decides" = "N" ]; then
 sh $HOME/.local/share/YTTS/bin/YTTS-rsync
    exit
 else
-kdialog --title "YTTS-customer-sort" --msgbox "More work $ACCT";
+kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS" --msgbox "     More work $ACCT    ";
 fi
 done 	
