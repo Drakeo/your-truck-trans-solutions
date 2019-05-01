@@ -29,7 +29,6 @@ else
 fi
 fi
 
-fi
 	kdialog --title "YTTS-splits" --caption "YTTS-splits" --icon "K-YTTS"  --yesno "YTTS-splits should be done any time to be sorted ";
 
 if [ "$?" = 0 ]; then
