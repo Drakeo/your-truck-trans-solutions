@@ -77,9 +77,9 @@ else
 fi
 
 if [ "$openbrs" = "N" ]; then
-   $HOME/.local/share/YTTS/bin/YTTS-rsync
+sh   $HOME/.local/share/YTTS/bin/YTTS-rsync
    exit
 else
-$HOME/.local/share/YTTS/bin/YTTS-rsync
+sh $HOME/.local/share/YTTS/bin/YTTS-rsync
 fi
 	nohup firefox $HOME/$DPBX/$CPYNAME/Drivers >/dev/null &
