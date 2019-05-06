@@ -1,0 +1,45 @@
+#!/bin/bash
+if su -c true "$USER"; then
+	kdialog  --title "YTTS-service" --caption "YTTS Programs" --icon "K-YTTS" --msgbox "<h1>WELCOME tO YOUR TRUCK TRANS SOLUTIONS</h1>" 
+else
+	kdialog --title "YTTS-start" --caption "YTTS-start" --icon "K-YTTS"  --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
+    exit
+fi
+
+while true ; do
+variable=$(kdialog  --geometry 550x200+200+200  --title "YTTS-start" --caption "YTTS-start" --icon "K-YTTS" --radiolist "CHOOSE YTTS TO RUN:" \
+		1 "YTTS-admin                -- Add Remove Equipment or Employees" on  \
+		2 "YTTS-sort                   -- Sorts Drivers Daily  Weekly Monthly BOL's" on \
+		3 "YTTS-customer-sort    -- Sort Customers or Customers Routes" on \
+		4 "YTTS-payroll               -- Dates And Places Drivers BOL's In A Folder" on \
+		5 "YTTS-split                   -- Dates And Places Split Shipments In A Folder" on \
+		6 "YTTS-rsync                  -- Backs Up Dropbox On Git-Hub" on \
+		7 "YTTS-setup                 -- Uninstall And Setup New Your Truck Trans Soultions" off;);
+
+if [ "$?" = 0 ]; then
+	if [ "$variable" = 1 ]; then
+		START=yes sh $HOME/.local/share/YTTS/bin/YTTS-admin;
+	elif [ "$variable" = 2 ]; then
+		START=yes sh $HOME/.local/share/YTTS/bin/YTTS-sort;
+	elif [ "$variable" = 3 ]; then
+		START=yes  sh $HOME/.local/share/YTTS/bin/YTTS-customer-sort 
+	elif [ "$variable" = 4 ]; then
+		START=yes  sh $HOME/.local/share/YTTS/bin/YTTS-payroll 
+	elif [ "$variable" = 5 ]; then
+		START=yes  sh $HOME/.local/share/YTTS/bin/YTTS-split
+	elif [ "$variable" = 6 ]; then
+		START=yes  sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+	elif [ "$variable" = 7 ]; then
+		START=yes  sh $HOME/.local/share/YTTS/bin/YTTS-setup
+	else
+		kdialog --error "ERROR";
+	fi;
+elif [ "$?" = 1 ]; then
+	kdialog --sorry "YOU CHOSE CANCEL";
+	exit;
+else
+	kdialog --error "ERROR";
+fi;
+done
+
+

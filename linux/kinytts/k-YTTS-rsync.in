@@ -1,0 +1,37 @@
+#!/bin/bash
+ME=$(id -u)
+#Github name = company name
+CPYNAME="comin"
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+
+kdialog --title "YTTS-rsync" --caption "YTTS-rsync" --icon "K-YTTS"  --msgbox "YTTS-rsync backup and send to git ";
+
+if [ -d $HOME/$CPYNAME ]; then
+cd $HOME/$CPYNAME 
+  git checkout master 
+  git pull
+cd $HOME
+else
+cd $HOME
+  git clone githubaddres
+fi
+echo make backup of dropbox
+sleep 3
+rsync -r -a -v  --progress --stats --exclude .git $HOME/Dropbox/ Dropbox-bkp/
+rsync -r -a -v  --delete --progress --stats --exclude .git --exclude .gitignore  \
+ $HOME/Dropbox/comin/  $HOME/comin
+
+echo ok going to comit changes
+
+cat > gitadd <<EOF
+cd $HOME/comin
+git add -A
+git commit -a -m 'upload`date +%s`'
+git push
+EOF
+sh gitadd
+rm gitadd
+kdialog --title "YTTS-rsync" --caption "YTTS-rsync" --icon "K-YTTS" --msgbox "check your githubaddres ";

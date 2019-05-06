@@ -1,0 +1,144 @@
+#!/bin/bash
+ME=$(id -u)
+ID=$(id -run)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+ACCT=$(whoami)
+DATE=$(date +'%m-%d-%y')
+WDATE=$(date +"%A")
+DRECPT="DRV-receipts-$DATE"
+DRVBOL="DRV-bol-$DATE"
+MDATE=$(date +'%m-%Y')
+YDATE=$(date +'%Y')
+MDRECPT="DRV-receipts-$MDATE"
+MDRVBOL="DRV-bol-$MDATE"
+YDRECPT="DRV-receipts-$YDATE"
+YDRVBOL="DRV-bol-$YDATE"
+CPYNAME="comin"
+DPBX=Dropbox
+EMPLY="yourabrv-"
+#begin YTTS-sort script
+
+if [ "${START:-no}" = "yes" ]; then
+ echo lets install
+else
+if su -c true "$USER"; then
+	echo -e "\e[1;31m Correct password\e[0m"
+else
+	kdialog --title "YTTS-sort" --caption "YTTS-sort" --icon "K-YTTS"  --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
+    exit
+fi
+fi
+
+
+	kdialog --title "YTTS-sort" --caption "YTTS-sort" --icon "K-YTTS" --yesno "Would you like to run YTTS-sort ";
+
+if [ "$?" = 0 ]; then
+	kdialog --title "YTTS-sort" --caption "YTTS-sort" --icon "K-YTTS"--msgbox "Click OK sorting $ACCT";
+	decides="Y";
+elif [ "$?" = 1 ]; 	then
+	kdialog --title "YTTS-sort" --caption "YTTS-sort" --icon "K-YTTS" --sorry "Click OK all done $ACCT";
+	decides="N";
+else
+	kdialog --error "ERROR";
+fi
+  
+if [ "$decides" = "N" ]; then
+   echo good day $ACCT
+   exit
+fi
+
+cd $HOME/$DPBX/$CPYNAME/Drivers
+if [ -d $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT ]; then
+cp */Receipts/*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT
+cp */Receipts/*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT
+cp */Receipts/*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT
+cp */Receipts/*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRECPT
+else
+mkdir -p $HOME/$DPBX/$CPYNAME/Drivers/$DRECPT
+cp */Receipts/*.jpg $DRECPT
+cp */Receipts/*.jpeg $DRECPT
+cp */Receipts/*.png $DRECPT
+cp */Receipts/*.pdf $DRECPT
+mv $HOME/$DPBX/$CPYNAME/Drivers/$DRECPT $HOME/$DPBX/$CPYNAME/Weekly/
+fi
+
+if [ -d $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL ]; then
+cp *$EMPLY*/*.jpg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/*.jpeg $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/*.png $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+cp *$EMPLY*/*.pdf $HOME/$DPBX/$CPYNAME/Weekly/$DRVBOL 
+else
+mkdir -p $DRVBOL
+cp *$EMPLY*/*.jpg $DRVBOL
+cp *$EMPLY*/*.jpeg $DRVBOL
+cp *$EMPLY*/*.png $DRVBOL
+cp *$EMPLY*/*.pdf $DRVBOL 
+mv $HOME/$DPBX/$CPYNAME/Drivers/$DRVBOL  $HOME/$DPBX/$CPYNAME/Weekly/
+fi
+#start monthly
+cd $HOME/$DPBX/$CPYNAME/Weekly/
+
+if [ -d $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT ]; then
+cp DRV-receipts-*/*.jpg $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT
+cp DRV-receipts-*/*.jpeg $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT
+cp DRV-receipts-*/*.png $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT
+cp DRV-receipts-*/*.pdf $HOME/$DPBX/$CPYNAME/Monthly/$MDRECPT
+else
+mkdir -p $MDRECPT
+cp DRV-receipts-*/*.jpg $MDRECPT
+cp DRV-receipts-*/*.jpeg $MDRECPT
+cp DRV-receipts-*/*.png $MDRECPT
+cp DRV-receipts-*/*.pdf $MDRECPT
+mv $HOME/$DPBX/$CPYNAME/Weekly/$MDRECPT $HOME/$DPBX/$CPYNAME/Monthly/
+fi
+
+if [ -d $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL ]; then
+cp DRV-bol-*/*.jpg $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL
+cp DRV-bol-*/*.jpeg $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL
+cp DRV-bol-*/*.png $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL
+cp DRV-bol-*/*.pdf $HOME/$DPBX/$CPYNAME/Monthly/$MDRVBOL
+else
+mkdir -p $MDRVBOL
+cp DRV-bol-*/*.jpg $MDRVBOL
+cp DRV-bol-*/*.jpeg $MDRVBOL
+cp DRV-bol-*/*.png $MDRVBOL
+cp DRV-bol-*/*.pdf $MDRVBOL
+mv $HOME/$DPBX/$CPYNAME/Weekly/$MDRVBOL $HOME/$DPBX/$CPYNAME/Monthly/
+fi
+#anual
+cd $HOME/$DPBX/$CPYNAME/Monthly/
+
+if [ -d $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT ]; then
+cp DRV-receipts-*/*.jpg $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT
+cp DRV-receipts-*/*.jpeg $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT
+cp DRV-receipts-*/*.png $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT
+cp DRV-receipts-*/*.pdf $HOME/$DPBX/$CPYNAME/Yearly/$YDRECPT
+else
+mkdir -p $YDRECPT
+cp DRV-receipts-*/*.jpg $YDRECPT
+cp DRV-receipts-*/*.jpeg $YDRECPT
+cp DRV-receipts-*/*.png $YDRECPT
+cp DRV-receipts-*/*.pdf $YDRECPT
+mv $HOME/$DPBX/$CPYNAME/Monthly/$YDRECPT $HOME/$DPBX/$CPYNAME/Yearly/
+fi
+# anual 
+if [ -d $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL ]; then
+cp DRV-bol-*/*.jpg $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL
+cp DRV-bol-*/*.jpeg $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL
+cp DRV-bol-*/*.png $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL
+cp DRV-bol-*/*.pdf $HOME/$DPBX/$CPYNAME/Yearly/$YDRVBOL
+else
+mkdir -p $YDRVBOL
+cp DRV-bol-*/*.jpg $YDRVBOL
+cp DRV-bol-*/*.jpeg $YDRVBOL
+cp DRV-bol-*/*.png $YDRVBOL
+cp DRV-bol-*/*.pdf $YDRVBOL
+mv $HOME/$DPBX/$CPYNAME/Monthly/$YDRVBOL $HOME/$DPBX/$CPYNAME/Yearly/
+fi
+kdialog --icon "K-YTTS" --title "YTTS-sort" --msgbox "daily weekly monthly have been created ";
+sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+
+

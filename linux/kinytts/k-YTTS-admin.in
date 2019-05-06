@@ -1,0 +1,251 @@
+#!/bin/bash
+ME=$(id -u)
+ID=$(id -run)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+
+ACCT=$(whoami)
+#location of drop box set to default
+DPBX=Dropbox
+# your company name
+CPYNAME="comin"
+#edit company address
+CPADRS="$CPYNAME ADDME"
+# Edit company phone number here
+CAPHONE="PHONME"
+# this shows day of the week
+WDATE=$(date +"%A")
+# this shows the todays date
+DATE=$(date +'%m-%d-%y')
+#your company intials
+EMPLY="yourabrv-"
+
+#begin YTTS-admin script
+
+
+
+if [ "${START:-no}" = "yes" ]; then
+ echo lets install
+else
+if su -c true "$USER"; then
+	echo -e "\e[1;31m Correct password\e[0m"
+else
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS"  --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
+    exit
+fi
+fi
+
+
+while true; do
+set e
+
+choice=$(kdialog --geometry 550x150+150+150 --title "YTTS-service" --caption "click drop down menu" --combobox "Select Add or Remove scripts :"  "add-employee"  "add-truck" \
+"add-trailer"   "rm-employee"  "rm-truck"  "rm-trailer" );
+
+
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+	echo $choice > /tmp/kde-$ID/admin.txt
+	optiontsk=$(sed -n 1p /tmp/kde-$ID/admin.txt)
+	rm /tmp/kde-$ID/admin.txt
+
+
+
+# add-employee = optiontsk
+if [ "$optiontsk" = "add-employee" ]; then
+	Aemployee=$(kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --inputbox "Example add Fred Smith month year of birthdate FSmith0214");
+
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+	echo $Aemployee >> /tmp/kde-$ID/Aemployee.txt
+	empname=$(sed -n 1p /tmp/kde-$ID/Aemployee.txt)
+	rm /tmp/kde-$ID/Aemployee.txt
+# check if employee exist if so ask what are you doing
+  if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --sorry "This matches another employee name ";
+  else
+	mkdir -p $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Receipts
+	mkdir -p $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Notices
+	echo $empname please use your company code hy-Hyster mc-MC Mlaine sy-Sygma fa-Fapco >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Employee-Help.txt
+	echo $CPADRS $CAPHONE  >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Employee-Help.txt
+	echo activate employee $empname $DATE >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Employee-Help.txt
+	echo activate employee $empname $DATE >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Receipts/Receipts.txt
+	echo activate employee $empname $DATE >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Notices/Notices.txt
+  fi
+# rm-employee = optiontsk
+elif [ "$optiontsk" = "rm-employee" ]; then
+	Remployee=$(kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --inputbox "Example Remove Fred Smith month year of birthdate FSmith0214");
+
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+	echo $Remployee >> /tmp/kde-$ID/Remployee.txt
+	empname=$(sed -n 1p /tmp/kde-$ID/Remployee.txt)
+	rm /tmp/kde-$ID/Remployee.txt
+# check if employee exist if so ask for correct spelling open a browser to searh for them
+  if [ -d $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname ]; then
+	echo deactivate employee $empname $DATE >> $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname/Employee-Help.txt
+	mv $HOME/$DPBX/$CPYNAME/Drivers/$EMPLY$empname $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Drivers/deactivate-$EMPLY$empname-$DATE
+	rm -rf $HOME/$DPBX/$CPYNAME/Drivers/deactivate-$EMPLY$empname 
+  else
+kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --sorry "No Matching Employee searching now ";
+nohup  firefox $HOME/$DPBX/$CPYNAME/Drivers >/dev/null &
+  fi
+# add-truck = optiontsk
+elif [ "$optiontsk" = "add-truck" ]; then
+	Atruck=$(kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --inputbox "Add your Truck number Example 307 ");
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+	echo $Atruck >> /tmp/kde-$ID/Atruck.txt
+	trkname=$(sed -n 1p /tmp/kde-$ID/Atruck.txt)
+	rm /tmp/kde-$ID/Atruck.txt
+# check if truck exist if so ask what are you doing
+  if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname ]; then
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --sorry "This matches another TRK-$trkname ";
+  else
+	mkdir -p $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Maintenance
+	mkdir -p $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Permits
+	echo activate TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Truck-Help.txt
+	echo $CPADRS $CAPHONE TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Truck-Help.txt
+	echo place maintenace records here .jpg .pdf preferred TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Maintenance/Maintenance.txt
+	echo place permits here TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Permits/Permits.txt
+    qrencode -o $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/qrcode-TRK-$trkname.png  https://www.dropbox.com/home/$CPYNAME/Trucks/TRK-$trkname
+    kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --msgbox "push enter create truck link for drivers ";
+nohup  firefox https://www.dropbox.com/home/$CPYNAME/Trucks >/dev/null &
+  fi
+# rm-truck = optiontsk    
+elif [ "$optiontsk" = "rm-truck" ]; then
+	Rtruck=$(kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --inputbox "Remove your Truck number Example 307 ");
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+	echo $Rtruck >> /tmp/kde-$ID/Rtruck.txt
+	trkname=$(sed -n 1p /tmp/kde-$ID/Rtruck.txt)
+	rm /tmp/kde-$ID/Rtruck.txt
+# check if truck exist if so ask for correct spelling open a browser to searh for them
+  if [ -d $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname  ]; then
+	echo deactivate TRK-$trkname $DATE >> $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname/Truck-Help.txt
+	mv  $HOME/$DPBX/$CPYNAME/Trucks/TRK-$trkname $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Trucks/deactivate-TRK-$trkname-$DATE
+	rm -rf $HOME/$DPBX/$CPYNAME/Trucks/deactivate-TRK-$trkname
+  else
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --sorry "No Matching Truck number searching now ";
+nohup  firefox $HOME/$DPBX/$CPYNAME/Trucks >/dev/null &
+  fi
+# add-trailer = optiontsk
+elif [ "$optiontsk" = "add-trailer" ]; then
+	Atrailer=$(kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --inputbox "Add your Trailer number Example 53007 ");
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+	echo $Atrailer >> /tmp/kde-$ID/Atrailer.txt
+	trlname=$(sed -n 1p /tmp/kde-$ID/Atrailer.txt)
+	rm /tmp/kde-$ID/Atrailer.txt
+# check if trailer exist if so ask what are you doing
+  if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --sorry "This matches another TRL-$trlname ";
+  else
+	mkdir -p $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Maintenance
+	mkdir -p $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits
+	echo activate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo Shippers or drivers droping or hooking place bol info here .jpg .pdf  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo please use your company code hy-Hyster mc-MC Mlaine sy-Sygma fa-Fapco  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo $CPADRS $CAPHONE TRL-$trlname  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	echo place maintenace records here .jpg .pdf preferred  TRL-$trlname  >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Maintenance/Maintenance.txt
+	echo activate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Permits/Permits.txt
+	qrencode -o $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/qrcode-TRL-$trlname.png  https://www.dropbox.com/home/$CPYNAME/Trailers/TRL-$trlname
+    kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --msgbox "push enter create trailer link for drivers ";
+nohup  firefox https://www.dropbox.com/home/$CPYNAME/Trailers >/dev/null &
+  fi
+# rm-trailer = optiontsk
+elif [ "$optiontsk" = "rm-trailer" ]; then
+	Rtrailer=$(kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --inputbox "Remover your Trailer number Example 53007 ");
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+	echo $Rtrailer >> /tmp/kde-$ID/Rtrailer.txt
+	trlname=$(sed -n 1p /tmp/kde-$ID/Rtrailer.txt)
+	rm /tmp/kde-$ID/Rtrailer.txt
+# check if trailer exist if so ask what are you doing
+  if [ -d $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname ]; then
+	echo deactivate TRL-$trlname $DATE >> $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname/Trailers-Help.txt
+	mv  $HOME/$DPBX/$CPYNAME/Trailers/TRL-$trlname  $HOME/$DPBX/$CPYNAME/Deactivated/Deactivated-Trailers/deactivate-TRL-$trlname-$DATE
+	rm -rf $HOME/$DPBX/$CPYNAME/Trailers/deactivate-TRL-$trlname
+  else
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --sorry "No Matching Trailer number searching now ";
+
+nohup  firefox $HOME/$DPBX/$CPYNAME/Trailers >/dev/null &
+  fi
+fi
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --yesno "like to run YTTS-admin again with another option task ";
+
+if [ "$?" = 0 ]; then
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --msgbox "Click OK back to work $ACCT";
+	decides="Y";
+elif [ "$?" = 1 ]; 	then
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --sorry "Click OK all done $ACCT";
+	decides="N";
+else
+	kdialog --title "YTTS-admin" --caption "YTTS-admin" --icon "K-YTTS" --error "ERROR";
+fi 
+
+
+if [ "$decides" = "N" ]; then
+INSTALL=yes sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+   exit
+fi
+
+done
