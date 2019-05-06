@@ -1,6 +1,6 @@
 ~~~
 linux and OSX Mac  users just use the install scripts.
-
+for Linux kdialog kde4 cd linux kinytts run k-install.sh 
 read below for virtual box install if wanted.
 
  Why run in VirtualBox because you can copy the whole system click of a mouse
