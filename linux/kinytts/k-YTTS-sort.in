@@ -139,6 +139,6 @@ cp DRV-bol-*/*.pdf $YDRVBOL
 mv $HOME/$DPBX/$CPYNAME/Monthly/$YDRVBOL $HOME/$DPBX/$CPYNAME/Yearly/
 fi
 kdialog --icon "K-YTTS" --title "YTTS-sort" --msgbox "daily weekly monthly have been created ";
-$HOME/.local/share/YTTS/bin/YTTS-rsync
+sh $HOME/.local/share/YTTS/bin/YTTS-rsync
 
 

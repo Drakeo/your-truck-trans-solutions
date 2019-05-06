@@ -150,7 +150,7 @@ fi;
 echo $decides
 
 if [ "$decides" = "N" ]; then
-sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+INSTALL=yes sh $HOME/.local/share/YTTS/bin/YTTS-rsync
    exit
 else
 kdialog --title "YTTS-customer-sort" --caption "YTTS-customer-sort" --icon "K-YTTS" --msgbox "     More work $ACCT    ";

@@ -52,7 +52,7 @@ if [ "$decides" = "N" ]; then
    exit
 fi
 
-sh $HOME/.local/share/YTTS/bin/YTTS-sort
+INSTALL=yes sh $HOME/.local/share/YTTS/bin/YTTS-sort
 
 boxB="$HOME/$DPBX/$CPYNAME/Drivers/*"
     for dir in $boxB ; do
@@ -77,9 +77,9 @@ else
 fi
 
 if [ "$openbrs" = "N" ]; then
-sh   $HOME/.local/share/YTTS/bin/YTTS-rsync
+INSTALL=yes sh $HOME/.local/share/YTTS/bin/YTTS-rsync
    exit
 else
-sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+INSTALL=yes sh $HOME/.local/share/YTTS/bin/YTTS-rsync
 fi
 	nohup firefox $HOME/$DPBX/$CPYNAME/Drivers >/dev/null &
