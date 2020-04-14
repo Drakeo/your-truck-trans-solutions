@@ -37,11 +37,11 @@ This lets you sort your BOL's by customer
 It opens an edito to add customers to your list
 It walks you through it step by step
 it it saves them by weekly monthly yearly
-look  on demo https://github.com/Drakeo/demo-trucking-company/tree/master/demo-trucking-company/Customers
+look  on demo https://github.com/Drakeo/demo-trucking-company/tree/master/Customers
     
     YTTS-split
     
- look on demo https://github.com/Drakeo/demo-trucking-company/tree/master/demo-trucking-company/Splits
+ look on demo https://github.com/Drakeo/demo-trucking-company/tree/master/Splits/
 This is a powerfull tool and still in development as i write this
 driver drops trailer scans BOL's names them split-company code-bol numbers-driver acount-date
 codes hy-Hyster mc-MC Mlaine sy-Sygma fa-Fapco wlm-WalMart etc etc
@@ -57,7 +57,7 @@ why because it grabs all the drivers BOL's and puts them in there driver boil fo
 So they can see all bills and date.
 And you are unable to sort anything till new BOL's come in.
 yes you can fix that but hey copy paste to death
-look on demo https://github.com/Drakeo/demo-trucking-company/tree/master/demo-trucking-company/Drivers/DTC-JD0215
+look on demo github.com/Drakeo/demo-trucking-company/tree/master/Drivers
 
 Or we use git-hub as a back up and can go to any moment at anytime
 we do this by tags or revision 
@@ -108,12 +108,11 @@ so yes we can go back in time
     after add-ing truck or a trailer it creates a qr scan and 
     opens firfox to your dropbox and ask you to create a link
     so all the drivers and shippers can use it.
-    demo from my git https://github.com/Drakeo/demo-trucking-company/tree/master/demo-trucking-company/Trailers/TRL-538976
+    demo from my git https://github.com/Drakeo/demo-trucking-company/tree/master/Trailers/TRL-532233
     yes it is sync with my Dropbox. 
     removed employees , trucks , trailers  go into a deactivated folder
-    demo https://github.com/Drakeo/demo-trucking-company/tree/master/demo-trucking-company/Deactivated
+    demo https://github.com/Drakeo/demo-trucking-company/tree/master/Deactivated
     
 we keep that stuff for records. 
-this is placed in his box https://github.com/Drakeo/demo-trucking-company/blob/master/demo-trucking-company/Deactivated/Deactivated-Drivers/deactivate-DTC-DScott0420-4-07-19/Employee-Help.txt
-add-? you get an activation date rm-? you get a deactivated date.
+this is placed in his box https://github.com/Drakeo/demo-trucking-company/blob/master/Deactivated/Deactivated-Drivers/deactivate-DTC-FSmith0214-04-18-19/Employee-Help.txt
 ~~~
