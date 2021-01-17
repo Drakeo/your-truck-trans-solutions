@@ -159,7 +159,7 @@ if [ "$decides" = "N" ]; then
    exit
 fi
 
-
+dropboxd
 mkdir -p $HOME/$DPBX/$repcomin
 cd $HOME/$DPBX/$repcomin
 mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
