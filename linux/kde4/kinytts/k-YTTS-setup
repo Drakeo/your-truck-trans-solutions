@@ -139,6 +139,7 @@ sed -i 's|Icon=|Icon=$ICON|g' YTTS-start.desktop
 EOF
 sh dsett
 rm dsett
+git config --global credential.helper store
 
 
 
