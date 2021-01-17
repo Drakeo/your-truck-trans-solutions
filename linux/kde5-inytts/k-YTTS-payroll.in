@@ -1,0 +1,85 @@
+#!/bin/bash
+ME=$(id -u)
+ID=$(id -run)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+ACCT=$(whoami)
+DATE=$(date +'%m-%d-%y')
+WDATE=$(date +"%A")
+DRECPT="DRV-receipts-$DATE"
+DRVBOL="DRV-bol-$DATE"
+MDATE=$(date +'%m-%Y')
+MDRECPT="DRV-receipts-$MDATE"
+MDRVBOL="DRV-bol-$MDATE"
+# your company name
+CPYNAME="comin"
+DPBX=Dropbox
+
+#begin YTTS-payroll script
+
+
+
+if [ "${START:-no}" = "yes" ]; then
+ echo lets install
+else
+if su -c true "$USER"; then
+	echo -e "\e[1;31m Correct password\e[0m"
+else
+	kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS"  --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
+    exit
+fi
+fi
+
+kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS"  --msgbox "YTTS-payroll should be done on scheduled days so to get all the drivers paperwork ";
+
+kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS"  --yesno "Are Tou Ready $ACCT run YTTS-payroll";
+
+if [ "$?" = 0 ]; then
+	kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS"  --msgbox "Click OK $ACCT going to box up the drivers paper work ";
+	decides="Y";
+elif [ "$?" = 1 ]; 	then
+	kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS"  --msgbox " Click OK  do it in another date ";
+	decides="N";
+else
+	kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS" --error "ERROR";
+fi
+
+  
+if [ "$decides" = "N" ]; then
+   echo good day $ACCT
+   exit
+fi
+
+INSTALL=yes sh $HOME/.local/share/YTTS/bin/YTTS-sort
+
+boxB="$HOME/$DPBX/$CPYNAME/Drivers/*"
+    for dir in $boxB ; do
+      ( cd $dir ;  mkdir $DRVBOL ; mv *.jpg *.jpeg *.png *.pdf $DRVBOL  )
+    done
+ 
+boxR="$HOME/$DPBX/$CPYNAME/Drivers/*/Receipts"
+    for dir in $boxR ; do
+      ( cd $dir ;  mkdir ../$DRECPT ; mv *.jpg *.jpeg *.png *.pdf ../$DRECPT )
+    done 
+
+kdialog --yesno "Would you like to run customer-sort again";
+
+if [ "$?" = 0 ]; then
+	kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS"  --msgbox "Click OK $ACCT going to box up the drivers paper work ";
+	openbrs="Y";
+elif [ "$?" = 1 ]; 	then
+	kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS"  --msgbox " Click OK  do it in another date ";
+	openbrs="N";
+else
+	kdialog --title "YTTS-payroll" "YTTS-payroll" --icon "K-YTTS"  --error "ERROR";
+fi
+
+if [ "$openbrs" = "N" ]; then
+INSTALL=yes sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+   exit
+else
+INSTALL=yes sh $HOME/.local/share/YTTS/bin/YTTS-rsync
+fi
+	nohup firefox $HOME/$DPBX/$CPYNAME/Drivers >/dev/null &

@@ -1,0 +1,168 @@
+#!/bin/bash
+
+ME=$(id -u)
+ID=$(id -run)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+
+ACCT=$(whoami)
+
+DPBX=Dropbox
+DESK="$HOME/.local/share/YTTS/bin"
+ICON="$HOME/.local/share/YTTS/kinytts/icons"
+KINTTYS="$HOME/.local/share/YTTS/kinytts"
+DESKTP="$HOME/.local/share/YTTS/kinytts/desktop"
+SHARE="$HOME/.local/share/applications"
+
+
+kdialog  --title "YTTS-service" "YTTS-setup" --icon "K-YTTS" --msgbox "<h1>Welcome to Your Trucking Trans Solutions.</h1>" 
+if [ "${INSTALL:-no}" = "yes" ]; then
+ echo lets install
+else
+if su -c true "$USER"; then
+	echo -e "\e[1;31m Correct password\e[0m"
+else
+	kdialog --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
+    exit
+fi
+fi
+cp -rf $DESKTP/YTTS-start.desktop  $SHARE
+cp -rf $KINTTYS/k-YTTS-admin.in YTTS-admin
+cp -rf $KINTTYS/k-YTTS-customer-sort.in YTTS-customer-sort
+cp -rf $KINTTYS/k-YTTS-payroll.in YTTS-payroll
+cp -rf $KINTTYS/k-YTTS-rsync.in YTTS-rsync
+cp -rf $KINTTYS/k-YTTS-start.in YTTS-start
+cp -rf $KINTTYS/k-YTTS-sort.in YTTS-sort
+cp -rf $KINTTYS/k-YTTS-split.in YTTS-split
+
+
+variable=$(kdialog --geometry 550x200+200+200 --title "YTTS-setup" "Set up your company system" --icon "K-YTTS" --inputbox "Name of your company on Git-hub Example demo-trucking-company");
+COMP="Your company name is  " 
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+echo $variable >> /tmp/kform.txt
+
+variable1=$(kdialog  --geometry 550x200+200+200 --title "YTTS-setup" "Set up your company system" --icon "K-YTTS" --inputbox "Actual URL to your git hup Example https://github.com/Drakeo/demo-trucking-company.git ");
+GCOMP="Your company Git-hub URL  Clone name is  " 
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+echo $variable1 >> /tmp/kform.txt
+
+variable2=$(kdialog  --geometry 550x200+200+200 --title "YTTS-setup" "Set up your company system" --icon "K-YTTS" --inputbox "Company Abbreviations in Caps Example demo-trucking-company is DTC   ");
+COMPAB="Your Company Abbreviations is  " 
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+echo $variable2 >> /tmp/kform.txt
+
+variable3=$(kdialog  --geometry 550x200+200+200 --title "YTTS-setup" "Set up your company system" --icon "K-YTTS" --inputbox "Your Company  address ");
+COMPAD="Your company address   " 
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+echo $variable3 >> /tmp/kform.txt
+
+variable4=$(kdialog  --geometry 550x200+200+200 --title "YTTS-setup" "Set up your company system" --icon "K-YTTS" --inputbox "Company phone number   ");
+COMPH="Your Company phone number is  " 
+case "$?" in
+	0)
+		;;
+	1)
+		kdialog --sorry "YOU CHOSE CANCEL";
+		;;
+	*)
+		kdialog --error "ERROR";
+		;;
+esac;
+echo $variable4 >> /tmp/kform.txt
+repcomin=$(sed -n 1p /tmp/kform.txt)
+gitname=$(sed -n 2p /tmp/kform.txt)
+coabriv=$(sed -n 3p /tmp/kform.txt)
+address=$(sed -n 4p /tmp/kform.txt)
+phone=$(sed -n 5p /tmp/kform.txt)
+rm /tmp/kform.txt
+
+
+
+cat > sett <<EOF
+sed -i 's|comin|$repcomin|g' YTTS-admin
+sed -i 's|comin|$repcomin|g' YTTS-customer-sort
+sed -i 's|comin|$repcomin|g' YTTS-payroll
+sed -i 's|comin|$repcomin|g' YTTS-rsync
+sed -i 's|comin|$repcomin|g' YTTS-sort
+sed -i 's|yourabrv|$coabriv|g' YTTS-admin
+sed -i 's|yourabrv|$coabriv|g' YTTS-sort
+sed -i 's|comin|$repcomin|g' YTTS-split
+sed -i 's|yourabrv|$coabriv|g' YTTS-split
+sed -i 's|githubaddres|$gitname|g' YTTS-rsync
+sed -i 's|ADDME|$address|g' YTTS-admin
+sed -i 's|PHONME|$phone|g' YTTS-admin
+EOF
+sh sett
+rm sett
+cd $HOME/.local/share/applications
+cat > dsett <<EOF
+sed -i 's|Exec=|Exec=$DESK|g' YTTS-start.desktop  
+sed -i 's|Icon=|Icon=$ICON|g' YTTS-start.desktop 
+EOF
+sh dsett
+rm dsett
+
+
+
+	kdialog --title "YTTS-setup" "YTTS-setup" --icon "K-YTTS" --yesno "Do you need to setup your dropbox Ready ";
+
+if [ "$?" = 0 ]; then
+	kdialog --msgbox "OK setting it up $ACCT";
+	decides="Y";
+elif [ "$?" = 1 ]; 	then
+	kdialog --sorry "OK all done $ACCT";
+	decides="N";
+else
+	kdialog --error "ERROR";
+fi
+  
+if [ "$decides" = "N" ]; then
+   echo good day $ACCT
+   exit
+fi
+
+
+mkdir -p $HOME/$DPBX/$repcomin
+cd $HOME/$DPBX/$repcomin
+mkdir Customers  Deactivated  Drivers  Monthly  Saftey Splits Trailers  Trucks  Weekly  Yearly
+cd Deactivated 
+mkdir Deactivated-Trailers Deactivated-Trucks Deactivated-Drivers
+#

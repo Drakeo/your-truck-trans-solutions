@@ -1,0 +1,64 @@
+#!/bin/bash
+ME=$(id -u)
+ID=$(id -run)
+if [ "$ME" = "0" ]; then
+echo do not run this as root 
+exit 
+fi
+ACCT=$(whoami)
+DATE=$(date +'%m-%d-%y')
+WDATE=$(date +"%A")
+SDRVBOL="split-DRV-bol-$DATE"
+MDATE=$(date +'%m-%Y')
+YDATE=$(date +'%Y')
+# your company name
+CPYNAME="comin"
+DPBX=Dropbox
+#begin YTTS-sort script
+EMPLY="yourabrv-"
+
+
+if [ "${START:-no}" = "yes" ]; then
+ echo lets install
+else
+if su -c true "$USER"; then
+	echo -e "\e[1;31m Correct password\e[0m"
+else
+	kdialog --title "YTTS-splits" "YTTS-splits" --icon "K-YTTS"  --error "<h1>ERROR Incorrect password Check if caps are on</h1>";
+    exit
+fi
+fi
+
+	kdialog --title "YTTS-splits" "YTTS-splits" --icon "K-YTTS"  --yesno "YTTS-splits should be done any time to be sorted ";
+
+if [ "$?" = 0 ]; then
+	kdialog --title "YTTS-splits" "YTTS-splits" --icon "K-YTTS" --msgbox "Click OK back to work $ACCT";
+	decides="Y";
+elif [ "$?" = 1 ]; 	then
+	kdialog --title "YTTS-splits" "YTTS-splits" --icon "K-YTTS" --sorry "Click OK all done $ACCT";
+	decides="N";
+else
+	kdialog --title "YTTS-splits" "YTTS-splits" --icon "K-YTTS" --error "ERROR";
+fi 
+
+ 
+if [ "$decides" = "N" ]; then
+   kdialog --title "YTTS-splits" "YTTS-splits" --icon "K-YTTS" --msgbox " good day $ACCT  "
+   exit
+fi
+
+cd $HOME/$DPBX/$CPYNAME/Drivers
+if [ -d $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL ]; then
+cp *$EMPLY*/split-*.jpg $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL 
+cp *$EMPLY*/split-*.jpeg $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL 
+cp *$EMPLY*/split-*.png $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL 
+cp *$EMPLY*/split-*.pdf $HOME/$DPBX/$CPYNAME/Splits/$SDRVBOL 
+else
+mkdir -p $SDRVBOL
+cp *$EMPLY*/split-*.jpg $SDRVBOL
+cp *$EMPLY*/split-*.jpeg $SDRVBOL
+cp *$EMPLY*/split-*.png $SDRVBOL
+cp *$EMPLY*/split-*.pdf $SDRVBOL 
+mv $HOME/$DPBX/$CPYNAME/Drivers/$SDRVBOL  $HOME/$DPBX/$CPYNAME/Splits/
+fi
+sh $HOME/.local/share/YTTS/bin/YTTS-rsync
